@@ -2,7 +2,6 @@ import { Card } from "@mui/material";
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { useTheme } from "@mui/material/styles";
 import { BigInfoProps } from "./types";
 
 /**
@@ -14,7 +13,6 @@ const BigInfo: React.FC<BigInfoProps> = ({
   children,
   bgColor,
 }) => {
-  const theme = useTheme();
   return (
     <Card
       sx={{
@@ -36,8 +34,8 @@ const BigInfo: React.FC<BigInfoProps> = ({
         <CardMedia
           component="img"
           sx={{
-            width: "110%",
-            // height: "auto",
+            // width: "100%",
+            height: "100%",
           }}
           image={imgSrc}
         />
