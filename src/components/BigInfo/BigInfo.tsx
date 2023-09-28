@@ -28,7 +28,7 @@ const BigInfo: React.FC<BigInfoProps> = ({
         sx={{
           display: "flex",
           flexDirection: "column",
-          width: { xs: "100%", sm: "50%" },
+          width: { xs: "100%", sm: "30%" },
         }}
       >
         <CardMedia
@@ -44,7 +44,7 @@ const BigInfo: React.FC<BigInfoProps> = ({
         sx={{
           display: "flex",
           flexDirection: "column",
-          width: { xs: "100%", sm: "50%" },
+          width: { xs: "100%", sm: "70%" },
         }}
       >
         <CardContent

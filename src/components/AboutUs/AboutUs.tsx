@@ -3,11 +3,13 @@ import { BigInfo } from "../BigInfo";
 import { ButtonMui } from "../ButtonMui";
 import theme from "../../theme/theme";
 import { MainInfoText, MainInfoTitle } from "./styles";
+import AboutImage from "../../Assets/about-us.jpeg";
+import { Link } from "react-router-dom";
 
 const AboutUs = () => {
   return (
     <div>
-      <BigInfo side="left" imgSrc="logo-hack.jpeg" bgColor="#FA9507">
+      <BigInfo side="left" imgSrc={AboutImage} bgColor="#FA9507">
         <MainInfoText>
           <MainInfoTitle>Acerca de HackMX 5</MainInfoTitle>
           <p>
@@ -42,13 +44,15 @@ const AboutUs = () => {
             próximo viernes 27 y sábado 28 de octubre, 2023. Sé parte de la
             innovación, sé parte de HackMx5.
           </p>
-          <ButtonMui
-            bgColor={theme.palette.primary.main}
-            color="#D9D9D9"
-            hoverColor={theme.palette.primary.dark}
-          >
-            ¡Registrate!
-          </ButtonMui>
+          <Link to="/sign-up" style={{ textDecoration: "none" }}>
+            <ButtonMui
+              bgColor={theme.palette.primary.main}
+              color="#D9D9D9"
+              hoverColor={theme.palette.primary.dark}
+            >
+              ¡Regístrate!
+            </ButtonMui>
+          </Link>
         </MainInfoText>
       </BigInfo>
     </div>

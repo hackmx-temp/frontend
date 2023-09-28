@@ -1,5 +1,6 @@
 import React from "react";
 import { AboutUs } from "../../components/AboutUs";
+import { Footer } from "../../components/Footer";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <div>
         <p>Section 5</p>
       </div>
+      <Footer />
     </div>
   );
 };
