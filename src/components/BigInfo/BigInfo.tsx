@@ -1,20 +1,24 @@
-import { useState } from "react";
 import { Card } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
 import { BigInfoProps } from "./types";
 
 /**
  * Characteristics of card and cardmedia content
  */
-const BigInfo: React.FC<BigInfoProps> = ({ side, imgSrc, children }) => {
+const BigInfo: React.FC<BigInfoProps> = ({
+  side,
+  imgSrc,
+  children,
+  bgColor,
+}) => {
   const theme = useTheme();
   return (
     <Card
       sx={{
+        backgroundColor: bgColor,
         display: "flex",
         flexDirection: {
           xs: "column",
@@ -32,8 +36,8 @@ const BigInfo: React.FC<BigInfoProps> = ({ side, imgSrc, children }) => {
         <CardMedia
           component="img"
           sx={{
-            width: "100%",
-            height: "auto",
+            width: "110%",
+            // height: "auto",
           }}
           image={imgSrc}
         />

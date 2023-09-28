@@ -13,4 +13,9 @@ export interface BigInfoProps {
    * Children for the card content
    */
   children: ReactNode;
+
+  /**
+   * Background color for the card
+   */
+  bgColor: string;
 }
