@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 const PublicRouter: React.FC = () => {
   return (
     <>
-      <p>NavBar Public</p>
+      {/* <p>NavBar Public</p> */}
       <Outlet />
     </>
   );
