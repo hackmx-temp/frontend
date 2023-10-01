@@ -4,44 +4,128 @@ declare module "@mui/material/styles" {
   // To create new object inside theme
   interface Theme {
     color: {
-      danger: string;
-      white: string;
-      darkWhite: string;
-      stone: string;
-      icy: string;
-      skyline: string;
-      cobalt: string;
-      navy: string;
-      space: string;
-      star: string;
-      scarlet: string;
-      sheen: string;
-      gray: string;
-      steel: string;
-      midnight: string;
       black: string;
+      white: string;
+      grays: {
+        d4: string;
+        d3: string;
+        d2: string;
+        d1: string;
+        base: string;
+        l1: string;
+        l2: string;
+        l3: string;
+        l4: string;
+        l5: string;
+      };
+      primary: string;
+      accent: string;
+      success: {
+        d4: string;
+        d3: string;
+        d2: string;
+        d1: string;
+        base: string;
+        l1: string;
+        l2: string;
+        l3: string;
+        l4: string;
+        l5: string;
+      };
+      alerts: {
+        d4: string;
+        d3: string;
+        d2: string;
+        d1: string;
+        base: string;
+        l1: string;
+        l2: string;
+        l3: string;
+        l4: string;
+        l5: string;
+      };
+      errors: {
+        d4: string;
+        d3: string;
+        d2: string;
+        d1: string;
+        base: string;
+        l1: string;
+        l2: string;
+        l3: string;
+        l4: string;
+        l5: string;
+      };
+      facebook: string;
+      twitter: string;
+      google: string;
+      youtube: string;
+      whatsapp: string;
+      instagram: string;
     };
   }
 
   // To create new object inside theme
   interface ThemeOptions {
     color: {
-      danger: React.CSSProperties["color"];
-      white: React.CSSProperties["color"];
-      darkWhite: React.CSSProperties["color"];
-      stone: React.CSSProperties["color"];
-      icy: React.CSSProperties["color"];
-      skyline: React.CSSProperties["color"];
-      cobalt: React.CSSProperties["color"];
-      navy: React.CSSProperties["color"];
-      space: React.CSSProperties["color"];
-      star: React.CSSProperties["color"];
-      scarlet: React.CSSProperties["color"];
-      sheen: React.CSSProperties["color"];
-      gray: React.CSSProperties["color"];
-      steel: React.CSSProperties["color"];
-      midnight: React.CSSProperties["color"];
       black: React.CSSProperties["color"];
+      white: React.CSSProperties["color"];
+      grays: {
+        d4: React.CSSProperties["color"];
+        d3: React.CSSProperties["color"];
+        d2: React.CSSProperties["color"];
+        d1: React.CSSProperties["color"];
+        base: React.CSSProperties["color"];
+        l1: React.CSSProperties["color"];
+        l2: React.CSSProperties["color"];
+        l3: React.CSSProperties["color"];
+        l4: React.CSSProperties["color"];
+        l5: React.CSSProperties["color"];
+      };
+      primary: React.CSSProperties["color"];
+      accent: React.CSSProperties["color"];
+      success: {
+        d4: React.CSSProperties["color"];
+        d3: React.CSSProperties["color"];
+        d2: React.CSSProperties["color"];
+        d1: React.CSSProperties["color"];
+        base: React.CSSProperties["color"];
+        l1: React.CSSProperties["color"];
+        l2: React.CSSProperties["color"];
+        l3: React.CSSProperties["color"];
+        l4: React.CSSProperties["color"];
+        l5: React.CSSProperties["color"];
+      };
+      alerts: {
+        d4: React.CSSProperties["color"];
+        d3: React.CSSProperties["color"];
+        d2: React.CSSProperties["color"];
+        d1: React.CSSProperties["color"];
+        base: React.CSSProperties["color"];
+        l1: React.CSSProperties["color"];
+        l2: React.CSSProperties["color"];
+        l3: React.CSSProperties["color"];
+        l4: React.CSSProperties["color"];
+        l5: React.CSSProperties["color"];
+      };
+      errors: {
+        d4: React.CSSProperties["color"];
+        d3: React.CSSProperties["color"];
+        d2: React.CSSProperties["color"];
+        d1: React.CSSProperties["color"];
+        base: React.CSSProperties["color"];
+        l1: React.CSSProperties["color"];
+        l2: React.CSSProperties["color"];
+        l3: React.CSSProperties["color"];
+        l4: React.CSSProperties["color"];
+        l5: React.CSSProperties["color"];
+      };
+      facebook: React.CSSProperties["color"];
+      twitter: React.CSSProperties["color"];
+      google: React.CSSProperties["color"];
+      youtube: React.CSSProperties["color"];
+      whatsapp: React.CSSProperties["color"];
+      instagram: React.CSSProperties["color"];
     };
   }
 

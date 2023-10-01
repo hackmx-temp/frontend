@@ -1,0 +1,1 @@
+export { default as SingleGallery } from './SingleGallery';
