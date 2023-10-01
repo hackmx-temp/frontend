@@ -8,6 +8,12 @@ export const CarouselContainer = styled.div<{ height: string; width: string }>`
   overflow: hidden;
 `;
 
+export const CarouselTitle = styled.h2`
+  font-size: 48px;
+  margin-bottom: 2rem;
+  text-align: center;
+`;
+
 export const TopCarousel = styled.div`
   display: flex;
   align-items: center;
@@ -60,7 +66,6 @@ export const ImagesWrapper = styled.div<{ height: string }>`
     scroll-snap-type: x mandatory;
     scroll-padding: 10px;
 
-
     &::-webkit-scrollbar {
       display: none;
     }
@@ -75,14 +80,17 @@ export const ImagesWrapper = styled.div<{ height: string }>`
   }
 `;
 
-export const ImageContainer = styled.div<{imageWidth: string; height: string }>`
-    width: ${({ imageWidth }) => imageWidth};
-    height: ${({ height }) => height};
+export const ImageContainer = styled.div<{
+  imageWidth: string;
+  height: string;
+}>`
+  width: ${({ imageWidth }) => imageWidth};
+  height: ${({ height }) => height};
 
-    // @media (max-width: 768px) {
-    //   width: 200px;
-    //   height: 200px;
-    // }
+  // @media (max-width: 768px) {
+  //   width: 200px;
+  //   height: 200px;
+  // }
 `;
 
 export const Image = styled.img<ImageProps>`
@@ -96,7 +104,6 @@ export const Image = styled.img<ImageProps>`
     scale: 1.05;
     transition: scale 0.3s ease-in-out;
   }
-  
 `;
 
 export const CirclesContainer = styled.div`
