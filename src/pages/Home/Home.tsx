@@ -1,4 +1,5 @@
 import React from "react";
+import { Sponsors } from "../../components/Sponsors";
 
 const Home = () => {
   return (
@@ -12,9 +13,7 @@ const Home = () => {
       <div>
         <p>Section 4</p>
       </div>
-      <div>
-        <p>Section 5</p>
-      </div>
+      <Sponsors />
     </div>
   );
 };
