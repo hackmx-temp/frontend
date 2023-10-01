@@ -16,6 +16,7 @@ import Button from "@mui/material/Button";
 import { HeaderLogoImg, HeaderLogoImgContainer } from "./styles";
 import HackMx from "../../Assets/hackmx-main.png";
 import theme from "../../theme/theme";
+import { Link } from "react-router-dom";
 
 interface Props {
   /**
@@ -86,19 +87,36 @@ export default function DrawerAppBar(props: Props) {
             </HeaderLogoImgContainer>
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button
-                key={item}
-                sx={{
-                  color: theme.color.primary,
-                  fontWeight: "600",
-                  fontSize: "16px",
-                  cursor: "pointer",
-                }}
-              >
-                {item}
-              </Button>
-            ))}
+            {navItems.map((item) =>
+              item === "Registro" ? (
+                <Link to="/registro" key={item}>
+                  <Button
+                    sx={{
+                      color: theme.color.primary,
+                      fontWeight: "600",
+                      fontSize: "16px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {item}
+                  </Button>
+                </Link>
+              ) : (
+                <Link to="/" key={item}>
+                  <Button
+                    key={item}
+                    sx={{
+                      color: theme.color.primary,
+                      fontWeight: "600",
+                      fontSize: "16px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {item}
+                  </Button>
+                </Link>
+              )
+            )}
           </Box>
         </Toolbar>
       </AppBar>

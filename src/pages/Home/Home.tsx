@@ -38,7 +38,6 @@ const Home = () => {
       <div>
         <p>Section 5</p>
       </div>
-      <Footer />
     </div>
   );
 };

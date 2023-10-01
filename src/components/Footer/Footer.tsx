@@ -40,7 +40,7 @@ const Footer: React.FC<FooterProps> = ({ variant = "" }) => {
     <FooterWrapper>
       <FooterContainer>
         <FooterUpperContainer>
-          <LogoContainer onClick={() => navigate("/register")}>
+          <LogoContainer onClick={() => navigate("/registro")}>
             <FooterLogoImgContainer>
               <FooterLogoImg src={HackMx} />
             </FooterLogoImgContainer>
@@ -52,7 +52,7 @@ const Footer: React.FC<FooterProps> = ({ variant = "" }) => {
                 <FooterLink onClick={() => navigate(`${""}`)}>
                   Inicio
                 </FooterLink>
-                <FooterLink onClick={() => navigate(`${""}`)}>
+                <FooterLink onClick={() => navigate("/registro")}>
                   Registro
                 </FooterLink>
               </>
