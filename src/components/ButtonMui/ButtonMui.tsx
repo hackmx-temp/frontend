@@ -16,6 +16,7 @@ const ExampleMui: React.FC<ButtonMuiProp> = ({
         "&:hover": {
           backgroundColor: hoverColor,
         },
+        textTransform: "none",
       }}
     >
       {children}
