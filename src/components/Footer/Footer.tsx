@@ -36,7 +36,7 @@ const Footer = () => {
 
           <FooterLinkWrapper>
             <FooterLinkContainer>
-              <FooterLink onClick={() => navigate("/sign-up")}>
+              <FooterLink onClick={() => navigate("/register")}>
                 Registrate
               </FooterLink>
               <FooterLink>Políticas de privacidad</FooterLink>
