@@ -123,16 +123,16 @@ function Registro() {
     }
 
     if (formData.universidad === 'Tecnológico de Monterrey' && !formData.matricula) {
-      errors.matricula = 'Este campo es obligatorio si eres comunidad TeC';
+      errors.matricula = 'Este campo es obligatorio si eres comunidad Tec';
     }
 
     if (formData.universidad === 'Tecnológico de Monterrey' && !formData.carrera) {
-      errors.carrera = 'Este campo es obligatorio si eres comunidad TeC';
+      errors.carrera = 'Este campo es obligatorio si eres comunidad Tec';
     }
 
     if (formData.universidad === 'Tecnológico de Monterrey' && !formData.necesitaAutobus1) {
-        errors.carrera = 'Este campo es obligatorio si eres comunidad TeC';
-      }
+      errors.necesitaAutobus1 = 'Este campo es obligatorio si eres comunidad Tec';
+    }
 
     return errors;
   }
@@ -298,18 +298,18 @@ function Registro() {
                               ))}
                             </TextField>
                             {field.id === 'universidad' && showOtroMessage && (
-                              <Typography
-                                variant="caption"
-                                color="textSecondary"
-                                sx={{
-                                  marginTop: '10px',
-                                  color: 'red',
-                                  fontWeight: 'bold',
-                                  marginLeft: '20px',
-                                }}
-                              >
-                                Ahora solo los del TEC
-                              </Typography>
+                             <Typography
+                             variant="caption"
+                             color="textSecondary"
+                             sx={{
+                               marginTop: '10px',
+                               color: '#b81414',
+                               fontWeight: 'bold',
+                               marginLeft: '20px'
+                             }}
+                           >
+                             <span style={{ marginLeft: 'auto' }}> Por el momento solo alumnos del TEC</span>
+                           </Typography>
                             )}
                           </>
                         ) : (
@@ -354,41 +354,42 @@ function Registro() {
                     </Grid>
  
                   ))}
-                  </Grid>
-                  
+                </Grid>
+
+                <div style={{ marginBottom: '50px', marginLeft: '5px' }}>
+                  <Checkbox
+                    checked={checked}
+                    onChange={() => setChecked(!checked)}
+                    color="primary"
+                    name="terminosYCondiciones"
+                  />
+                  <span style={{ fontSize: '12px' }}>
+                    Acepto los{' '}
+                    <a href="https://tec.mx/es/politicas-de-privacidad-del-tecnologico-de-monterrey">
+                      Términos y Condiciones
+                    </a>
+                  </span>
+                </div>
+
+                <p style={{ color: '#b81414', fontSize: '12px',fontWeight: 'bold', display: 'flex', justifyContent: 'center', }}>Selecciona los términos y condiciones antes de enviarlo</p>
+
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '10%' }}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    className="custom-button"
+                    disabled={!checked}
+                  >
+                    Enviar
+                  </Button>
+                </div>
+
                 {showError && (
                   <div className="error-message" style={{ color: 'black' }}>
                     Debes aceptar los Términos y Condiciones para continuar.
                   </div>
                 )}
-                <Grid container alignItems="center" justifyContent="center">
-                  <Grid item xs={12} sm={6} className="submit-button">
-                  <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '10%' }}>
-    <Button
-      type="submit"
-      variant="contained"
-      className="custom-button"
-      disabled={!checked}
-    >
-      Enviar
-    </Button>
-  </div>
-                  </Grid>
-                </Grid>
 
-                <Grid container alignItems="center" justifyContent="flex-end">
-                  <Grid item>
-                    <Checkbox
-                      checked={checked}
-                      onChange={() => setChecked(!checked)}
-                      color="primary"
-                      name="terminosYCondiciones"
-                    />
-                  </Grid>
-                  <Grid item sx={{ textAlign: 'right' }}>
-                    Acepto los <a href="https://tec.mx/es/politicas-de-privacidad-del-tecnologico-de-monterrey">Términos y Condiciones</a>
-                  </Grid>
-                </Grid>
               </form>
             </CardContent>
           </Card>
@@ -421,6 +422,10 @@ function Registro() {
 }
 
 export default Registro;
+
+
+
+
 
 
 
