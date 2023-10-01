@@ -13,11 +13,10 @@ import {
   FooterUpperContainer,
   FooterWrapper,
   LogoContainer,
-  TextContainer,
 } from "./styles";
 
 import CopyrightIcon from "@mui/icons-material/Copyright";
-import HackMx from "../../assets/hackmx-logo.png";
+import HackMx from "../../assets/hackmx-transparent.png";
 import React, { useEffect } from "react";
 import { Grid, IconButton } from "@mui/material";
 import { Facebook, Instagram } from "@mui/icons-material";

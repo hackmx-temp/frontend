@@ -28,7 +28,7 @@ export const FooterLogoImgContainer = styled.div`
 `;
 
 export const FooterLogoImg = styled.img`
-width: 100px;
+width: 80px;
   height: auto;
 `;
 
