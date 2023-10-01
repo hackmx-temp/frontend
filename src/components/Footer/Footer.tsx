@@ -14,21 +14,17 @@ import {
   FooterWrapper,
   LogoContainer,
   TextContainer,
-  UPText,
 } from "./styles";
 
 import CopyrightIcon from "@mui/icons-material/Copyright";
-import HubReserveLogo from "../../assets/hackmx-logo.png";
+import HackMx from "../../assets/hackmx-logo.png";
 import React, { useEffect } from "react";
 import { Grid, IconButton } from "@mui/material";
-import { Facebook, LinkedIn } from "@mui/icons-material";
+import { Facebook, Instagram } from "@mui/icons-material";
 import { useLocation, useNavigate } from "react-router-dom";
 // import { ROUTES } from "../../routes/constants";
 import { FooterProps } from "./types";
-
-/**
- * Footer for all pages in the project. Does not receive any arguments.
- */
+import theme from "../../theme/theme";
 
 const Footer: React.FC<FooterProps> = ({
   variant = "",
@@ -47,31 +43,18 @@ const Footer: React.FC<FooterProps> = ({
     <FooterWrapper>
       <FooterContainer>
         <FooterUpperContainer>
-          <LogoContainer onClick={() => navigate("/")}>
+          <LogoContainer onClick={() => navigate("/register")}>
             <FooterLogoImgContainer>
-              <FooterLogoImg src={HubReserveLogo} />
+              <FooterLogoImg src={HackMx} />
             </FooterLogoImgContainer>
           </LogoContainer>
 
           <FooterLinkWrapper>
             <FooterLinkContainer>
-              {variant === "" ? (
-                <>
-                  {/* <FooterLink onClick={() => navigate(`${ROUTES.RESERVE}`)}>Reservar </FooterLink>
-                  <FooterLink onClick={() => navigate(`${ROUTES.FAVORITES}`)}>Favoritos</FooterLink>
-                  <FooterLink onClick={() => navigate(`${ROUTES.CALENDAR}`)}>Calendario</FooterLink>
-                  <FooterLink onClick={() => navigate(`${ROUTES.RESERVATIONS}`)}>Mis Reservaciones</FooterLink>
-                  <FooterLink onClick={() => navigate(`${ROUTES.PROFILE}`)}>Perfil</FooterLink> */}
-                </>
-              ) : variant === "admin" ? (
-                <>
-                  {/* <FooterLink onClick={() => navigate(`${ROUTES.ADMIN}${ROUTES.PANEL}`)}>Panel </FooterLink>
-                  <FooterLink onClick={() => navigate(`${ROUTES.ADMIN}${ROUTES.ADMIN_RESERVATIONS}`)}>Reservaciones</FooterLink>
-                  <FooterLink onClick={() => navigate(`${ROUTES.ADMIN}${ROUTES.STATISTICS}`)}>Estadísticas</FooterLink>
-                  <FooterLink onClick={() => navigate(`${ROUTES.ADMIN}${ROUTES.USERS}`)}>Users</FooterLink>
-                  <FooterLink onClick={() => navigate(`${ROUTES.ADMIN}${ROUTES.PROFILE}`)}>Perfil</FooterLink> */}
-                </>
-              ) : null}
+              <>
+                  <FooterLink onClick={() => navigate(`${""}`)}>Inicio</FooterLink>
+                  <FooterLink onClick={() => navigate(`${""}`)}>Registro</FooterLink>
+              </>
             </FooterLinkContainer>
           </FooterLinkWrapper>
         </FooterUpperContainer>
@@ -90,36 +73,36 @@ const Footer: React.FC<FooterProps> = ({
                   <IconButton
                     sx={{
                       "&:hover": {
-                        color: "#fff",
+                        color: theme.color.facebook,
                         transition: "color 0.4s ease-in-out",
                         opacity: 0.7,
                         svg: {
-                          color: "#fff",
+                          color: theme.color.facebook,
                           transition: "color 0.4s ease-in-out",
                         },
                       },
                     }}
-                    style={{ marginTop: "10px" }}
+                    href="https://www.facebook.com/TecHackMx" target="_blank"
                   >
-                    <Facebook sx={{ fontSize: 36, color: "#a0a2aa" }} />
+                    <Facebook sx={{ fontSize: 36, color: theme.color.grays.d1 }} />
                   </IconButton>
                 </Grid>
                 <Grid item>
                   <IconButton
                     sx={{
                       "&:hover": {
-                        color: "#fff",
+                        color: theme.color.instagram,
                         transition: "color 0.4s ease-in-out",
                         opacity: 0.7,
                         svg: {
-                          color: "#fff",
+                          color: theme.color.instagram,
                           transition: "color 0.4s ease-in-out",
                         },
                       },
                     }}
                     style={{ marginTop: "10px" }}
                   >
-                    <LinkedIn sx={{ fontSize: 36, color: "#a0a2aa" }} />
+                    <Instagram sx={{ fontSize: 36, color: theme.color.grays.d1 }} />
                   </IconButton>
                 </Grid>
               </Grid>
@@ -129,7 +112,7 @@ const Footer: React.FC<FooterProps> = ({
                     <CopyrightIcon sx={{ fontSize: 15 }} />
                   </FooterCopyrightIcon>
                   <FooterCopyrightText>
-                    &nbsp; 2023 Hub Reserve All rights reserved.
+                    &nbsp; 2023 HackMx All rights reserved.
                   </FooterCopyrightText>
                 </FooterCopyrightContainer>
               </Grid>
@@ -149,7 +132,7 @@ const Footer: React.FC<FooterProps> = ({
                       <CopyrightIcon sx={{ fontSize: 15 }} />
                     </FooterCopyrightIcon>
                     <FooterCopyrightText>
-                      &nbsp;© 2023 Hub Reserve All rights reserved.
+                      &nbsp;2023 HackMx all rights reserved.
                     </FooterCopyrightText>
                   </FooterCopyrightContainer>
                 </Grid>
@@ -158,32 +141,33 @@ const Footer: React.FC<FooterProps> = ({
                   <IconButton
                     sx={{
                       "&:hover": {
-                        color: "#fff",
+                        color: theme.color.facebook,
                         transition: "color 0.4s ease-in-out",
                         opacity: 0.7,
                         svg: {
-                          color: "#fff",
+                          color: theme.color.facebook,
                           transition: "color 0.4s ease-in-out",
                         },
                       },
                     }}
+                    href="https://www.facebook.com/TecHackMx" target="_blank"
                   >
-                    <Facebook sx={{ fontSize: 30, color: "#a0a2aa" }} />
+                    <Facebook sx={{ fontSize: 30, color: theme.color.grays.d1 }} />
                   </IconButton>
                   <IconButton
                     sx={{
                       "&:hover": {
-                        color: "#fff",
+                        color: theme.color.instagram,
                         transition: "color 0.4s ease-in-out",
                         opacity: 0.7,
                         svg: {
-                          color: "#fff",
+                          color: theme.color.instagram,
                           transition: "color 0.4s ease-in-out",
                         },
                       },
                     }}
                   >
-                    <LinkedIn sx={{ fontSize: 30, color: "#a0a2aa" }} />
+                    <Instagram sx={{ fontSize: 30, color: theme.color.grays.d1 }} />
                   </IconButton>
                 </Grid>
               </Grid>

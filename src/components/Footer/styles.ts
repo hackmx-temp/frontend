@@ -2,7 +2,7 @@ import styled from "styled-components";
 import theme from "../../theme/theme";
 
 export const FooterWrapper = styled.div`
-  background-color: ${theme.color.shadow};
+  background-color: #1e1f26;
   width: 100%;
   padding: 2em 0;
   margin-bottom: 0px;
@@ -28,8 +28,8 @@ export const FooterLogoImgContainer = styled.div`
 `;
 
 export const FooterLogoImg = styled.img`
-  height: 2.7em;
-  width: auto;
+width: 100px;
+  height: auto;
 `;
 
 export const FooterLinkWrapper = styled.div``;
@@ -44,12 +44,12 @@ export const FooterLinkContainer = styled.div`
 export const FooterLink = styled.a`
   cursor: pointer;
   text-decoration: none;
-  color: #f5f5f5;
+  color: ${theme.color.grays.d1};
   margin: 1em;
   font-size: 1em;
 
   &:hover {
-    color: ${theme.color.honey};
+    color: ${theme.color.accent};
     transition: color 0.4s ease;
   }
 `;
@@ -95,16 +95,4 @@ export const LogoContainer = styled.div`
 export const TextContainer = styled.div`
   display: inline-block;
   margin: 1em 1em 1em 0;
-`;
-
-export const UPText = styled.span`
-  color: ${theme.color.honey};
-  font-size: 1.5em;
-  font-weight: 700;
-`;
-
-export const ElectricText = styled.span`
-  color: ${theme.color.white};
-  font-size: 1.5em;
-  font-weight: 700;
 `;
