@@ -6,7 +6,11 @@ export const MainInfoText = styled.div`
 `;
 
 export const MainInfoTitle = styled.h1`
-  font-size: 48px;
+  font-size: 43px;
   font-weight: 700;
-  margin-bottom: 1rem;
+`;
+
+export const MainInfoDescription = styled.p`
+  font-size: 20px;
+  font-weight: 400;
 `;
