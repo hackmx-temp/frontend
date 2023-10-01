@@ -453,19 +453,25 @@ function Registro() {
         open={dialogStatus}
         onClose={() => setDialogStatus(false)}
       >
-        <DialogTitle id="alert-dialog-title">
+        <DialogTitle id="alert-dialog-title" component="h5" sx={{ fontWeight: 'bold',textAlign:'center' }}>
           {errorDialog ? 'Error' : 'Registro exitoso'}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>
+          <DialogContentText color="textSecondary" sx={{textAlign:'center' }}>
             {messageDialog}
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
+        <DialogActions style={{ justifyContent: 'center' }}>
           <Link to={errorDialog ? '#' : '/'}>
-            <Button onClick={() => setDialogStatus(false)} autoFocus>
-              Cerrar
-            </Button>
+          <Button
+            onClick={() => setDialogStatus(false)}
+            autoFocus
+            variant="contained"
+            className="custom-button"
+            style={{ marginTop: '20px' }}
+          >
+            Cerrar
+          </Button>
           </Link>
         </DialogActions>
       </Dialog>
