@@ -6,6 +6,7 @@ export const CarouselContainer = styled.div<{ height: string; width: string }>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   overflow: hidden;
+  margin-bottom: 2rem;
 `;
 
 export const CarouselTitle = styled.h2`

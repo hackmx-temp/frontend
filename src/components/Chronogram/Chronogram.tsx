@@ -2,8 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import { Container, ContainerInfo, TitleChronogram } from "./styles";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import { Container, TitleChronogram } from "./styles";
 
 interface AgendaItemProps {
   day: string;
@@ -110,12 +109,6 @@ const Chronogram: React.FC = () => {
     <>
       <Container>
         <TitleChronogram>Cronograma</TitleChronogram>
-        <div>
-          <ContainerInfo>
-            <LocationOnOutlinedIcon />
-            Tecnológico de Monterrey Campus Ciudad de México
-          </ContainerInfo>
-        </div>
         <Box>
           {agendaItems.map((item, index) => (
             <AgendaItem key={index} {...item} />

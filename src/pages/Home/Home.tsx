@@ -1,8 +1,10 @@
 import React from "react";
 import { AboutUs } from "../../components/AboutUs";
-import { Footer } from "../../components/Footer";
 import { Carousel } from "../../components/Carousel";
 import Chronogram from "../../components/Chronogram/Chronogram";
+import { MapComponent } from "../../components/MapComponent";
+import { Container, Grid } from "@mui/material";
+import { MainContainer } from "./styles";
 
 const Home = () => {
   return (
@@ -36,9 +38,37 @@ const Home = () => {
           imageWidth="150px"
         />
       </div>
-      <div>
-        <Chronogram />
-      </div>
+      <MainContainer>
+        <Container
+          style={{
+            // height: "100vh",
+            display: "flex",
+            alignItems: "center",
+            backgroundColor: "#e4caa5",
+          }}
+        >
+          <Grid
+            container
+            spacing={3}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              style={{
+                paddingLeft: "5rem",
+              }}
+            >
+              <Chronogram />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <MapComponent />
+            </Grid>
+          </Grid>
+        </Container>
+      </MainContainer>
     </div>
   );
 };
