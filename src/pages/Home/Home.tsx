@@ -1,7 +1,6 @@
-import React from "react";
 import { AboutUs } from "../../components/AboutUs";
-import { Footer } from "../../components/Footer";
 import { Carousel } from "../../components/Carousel";
+import { PreviousHacks } from "../../components/PreviousHacks";
 
 const Home = () => {
   return (
@@ -12,6 +11,7 @@ const Home = () => {
       <div>
         <AboutUs />
       </div>
+      <PreviousHacks />
       <div>
         <Carousel
           clients={[
@@ -35,7 +35,6 @@ const Home = () => {
           imageWidth="150px"
         />
       </div>
-      <Sponsors />
     </div>
   );
 };
