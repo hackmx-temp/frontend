@@ -12,6 +12,7 @@ export const CarouselTitle = styled.h2`
   font-size: 48px;
   margin-bottom: 2rem;
   text-align: center;
+  font-family: "Popins", sans-serif;
 `;
 
 export const TopCarousel = styled.div`

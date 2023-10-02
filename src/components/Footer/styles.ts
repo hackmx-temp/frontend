@@ -6,7 +6,7 @@ export const FooterWrapper = styled.div`
   width: 100%;
   padding: 2em 0;
   margin-bottom: 0px;
-  font-family: "Inter", sans-serif;
+  font-family: "Popins", sans-serif;
 `;
 
 export const FooterContainer = styled.div`

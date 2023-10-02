@@ -2,6 +2,9 @@ import { createTheme, colors } from "@mui/material";
 
 // A custom theme for this app
 const theme = createTheme({
+  typography: {
+    fontFamily: "Popins, sans-serif",
+  },
   color: {
     black: "#000000",
     white: "#ffffff",

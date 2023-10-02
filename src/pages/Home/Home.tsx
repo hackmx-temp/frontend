@@ -2,6 +2,7 @@ import React from "react";
 import { AboutUs } from "../../components/AboutUs";
 import { Footer } from "../../components/Footer";
 import { Carousel } from "../../components/Carousel";
+import Chronogram from "../../components/Chronogram/Chronogram";
 
 const Home = () => {
   return (
@@ -36,7 +37,7 @@ const Home = () => {
         />
       </div>
       <div>
-        <p>Section 5</p>
+        <Chronogram />
       </div>
     </div>
   );
