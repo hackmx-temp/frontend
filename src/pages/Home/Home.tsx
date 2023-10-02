@@ -35,9 +35,7 @@ const Home = () => {
           imageWidth="150px"
         />
       </div>
-      <div>
-        <p>Section 5</p>
-      </div>
+      <Sponsors />
     </div>
   );
 };
