@@ -18,12 +18,13 @@ interface FormData {
   correo: string;
   telefono: string;
   genero: string;
-  universidad: string;
   campus: string;
   carrera: string;
   matricula: string;
   necesitaAutobus1: string;
   semestre: string;
+  situacionmedica: string;
+  alergias: string;
 }
 
 type FormField = {
@@ -46,16 +47,16 @@ function Registro() {
     telefono: '',
     genero: '',
     semestre: '',
-    universidad: '',
     carrera: '',
     matricula: '',
     campus: '',
     necesitaAutobus1: '',
+    situacionmedica: '',
+    alergias: ' ',
   };
 
   const [formData, setFormData] = useState(initialFormData);
   const genderOptions = ["Hombre", "Mujer", "No binario", "Prefiero no decir"];
-  const universidadOptions = ["Tecnológico de Monterrey", "Otro"];
   const campusOptions = ["CCM", "CSF", "CEM", "Toluca"]
   const carreraOptions = [
     "ARQ", "LUB", "LEC", "LRI", "LED", "LTP", "LC", "LEI", "LPE", "LAD", "LDI", "LLE", "LTM", "IDM", "INA", "IAL", "IDS", "IRS", "ITD", "IE", "IIS", "IFI", "IAG", "IBT", "IQ", "IC", "ITC", "IID", "IM", "IMD", "IMT", "LAE", "LCPF", "LDO", "LIN", "LAF", "LDE", "LEM", "LIT", "LBC", "LPS", "MO", "LNB", "MC"
@@ -73,15 +74,7 @@ function Registro() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
-    if (name === 'universidad') {
-      setShowMatriculaCarrera(value === 'Tecnológico de Monterrey');
-      setShowOtroMessage(value === 'Otro');
-      if (value === 'Otro') {
-        setFormData({ ...formData, matricula: '', carrera: '', necesitaAutobus1: '' });
-
-      }
-    }
-
+    
     setFormData({ ...formData, [name]: value });
   };
 
@@ -93,12 +86,13 @@ function Registro() {
       correo: null,
       telefono: null,
       genero: null,
-      universidad: null,
       carrera: null,
       matricula: null,
       necesitaAutobus1: null,
       campus: null,
       semestre: null,
+      situacionmedica: null,
+      alergias: null,
     };
 
     if (!formData.nombre) {
@@ -133,25 +127,14 @@ function Registro() {
       errors.necesitaAutobus1 = 'Este campo es obligatorio';
     }
 
-    if (!formData.universidad) {
-      errors.universidad = 'Este campo es obligatorio';
+    if (!formData.situacionmedica) {
+      errors.situacionmedica = 'Este campo es obligatorio';
     }
 
-    if (formData.universidad === 'Tecnológico de Monterrey' && !formData.matricula) {
-      errors.matricula = 'Este campo es obligatorio si eres comunidad Tec';
+    if (!formData.alergias) {
+      errors.alergias = 'Este campo es obligatorio';
     }
 
-    if (formData.universidad === 'Tecnológico de Monterrey' && !formData.campus) {
-      errors.matricula = 'Este campo es obligatorio si eres comunidad Tec';
-    }
-
-    if (formData.universidad === 'Tecnológico de Monterrey' && !formData.carrera) {
-      errors.carrera = 'Este campo es obligatorio si eres comunidad Tec';
-    }
-
-    if (formData.universidad === 'Tecnológico de Monterrey' && !formData.necesitaAutobus1) {
-      errors.necesitaAutobus1 = 'Este campo es obligatorio si eres comunidad Tec';
-    }
 
     return errors;
   }
@@ -163,12 +146,13 @@ function Registro() {
     correo: null,
     telefono: null,
     genero: null,
-    universidad: null,
     carrera: null,
     matricula: null,
     necesitaAutobus1: null,
     campus: null,
     semestre: null,
+    situacionmedica:null,
+    alergias: null,
   });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -192,14 +176,16 @@ function Registro() {
         email: formData.correo,
         password: generatePass(),
         phone_number: formData.telefono,
-        university: formData.universidad,
         campus: formData.campus,
         career: formData.carrera,
         semester: formData.semestre,
-        is_from_tec: formData.universidad === 'Tecnológico de Monterrey',
         gender: formData.genero,
-        enrollment_id: formData.matricula
-      }
+        enrollment_id: formData.matricula,
+        university: 'Nombre de tu universidad',
+        is_from_tec: true, 
+        
+      };
+      
       createUser(user).then((response) => {
         if (response.status === 201) {
           const user = response.data;
@@ -270,20 +256,7 @@ function Registro() {
               </MenuItem>
             ))}
           </TextField>
-          {field.id === 'universidad' && showOtroMessage && (
-            <Typography
-              variant="caption"
-              color="textSecondary"
-              sx={{
-                marginTop: '10px',
-                color: '#b81414',
-                fontWeight: 'bold',
-                marginLeft: '20px'
-              }}
-            >
-              <span style={{ marginLeft: 'auto' }}> Por el momento solo alumnos del TEC</span>
-            </Typography>
-          )}
+          
         </>
       );
     }
@@ -386,6 +359,8 @@ function Registro() {
     { id: 'apellidoMaterno', label: 'Apellido materno', placeholder: 'Apellido materno', required: true },
     { id: 'correo', label: 'Correo personal', placeholder: 'Correo personal', required: true },
     { id: 'telefono', label: 'Número telefónico', placeholder: 'Número telefónico', required: true },
+    
+
     {
       id: 'genero',
       label: 'Género',
@@ -400,14 +375,8 @@ function Registro() {
       type: 'select',
       options: semestreOptions,
     },
-    {
-      id: 'universidad',
-      label: 'Universidad',
-      placeholder: 'Universidad',
-      required: true,
-      type: 'select',
-      options: universidadOptions,
-    },
+    
+    
     {
       id: 'campus',
       label: 'Campus',
@@ -415,7 +384,6 @@ function Registro() {
       required: true,
       type: 'select',
       options: campusOptions,
-      hidden: !showMatriculaCarrera,
     },
     {
       id: 'carrera',
@@ -423,17 +391,13 @@ function Registro() {
       placeholder: 'Carrera',
       required: true,
       type: 'select',
-      showOnValue: 'Tecnológico de Monterrey',
       options: carreraOptions,
-      hidden: !showMatriculaCarrera,
     },
     {
       id: 'matricula',
       label: 'Matrícula',
       placeholder: 'Matrícula',
-      required: false,
-      showOnValue: 'Tecnológico de Monterrey',
-      hidden: !showMatriculaCarrera,
+      required: true,
     },
     {
       id: 'necesitaAutobus1',
@@ -441,10 +405,12 @@ function Registro() {
       placeholder: '¿Necesitas autobús?',
       required: true,
       type: 'select',
-      showOnValue: 'Tecnológico de Monterrey',
       options: necesitaAu1Options,
-      hidden: !showMatriculaCarrera,
     },
+
+    
+    { id: 'alergias', label: 'Alergias', placeholder: '¿Alguna alergia?', required: true },
+    { id: 'situacionmedica', label: 'Condición Médica', placeholder: 'Condición Médica', required: true },
   ];
 
   const dialog = () => {
@@ -492,7 +458,7 @@ function Registro() {
           <Card className="form-container">
             <CardContent>
               <Typography gutterBottom variant="h2" sx={{ textAlign: 'center', marginBottom: '46px', marginTop: '20px', fontSize: '58px' }}>
-                <span style={{ fontStyle: 'italic', fontWeight: 'bold' }}>Registrate</span>{' '}
+                <span style={{ fontStyle: 'italic', fontWeight: 'bold' }}>Regístrate</span>{' '}
                 <span style={{ fontWeight: 'bold' }}>para</span>{' '}
                 <span style={{ color: '#3B5998', fontWeight: 'bold' }}>HackMX 5</span>
               </Typography>
@@ -561,3 +527,4 @@ function Registro() {
 }
 
 export default Registro;
+
