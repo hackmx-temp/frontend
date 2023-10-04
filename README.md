@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+All the development is merged in the branch [dev](https://github.com/hackmx-temp/frontend/tree/dev). To see the most current version locally use the following commands:
+~~~
+git clone https://github.com/hackmx-temp/frontend.git
+git fetch
+git checkout dev
+~~~
 ## Install dependencies
 Simply run `yarn` to install all dependencies from the package.
 
