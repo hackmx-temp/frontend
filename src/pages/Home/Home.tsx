@@ -5,6 +5,10 @@ import Chronogram from "../../components/Chronogram/Chronogram";
 import { MapComponent } from "../../components/MapComponent";
 import { Container, Grid } from "@mui/material";
 import { MainContainer } from "./styles";
+import { Mosaic } from "../../components/Mosaic";
+import awsLogo from "../../assets/sponsors/aws.png";
+import dacompassLogo from "../../assets/sponsors/dacompass.png";
+import liverpoolLogo from "../../assets/sponsors/liverpool.png";
 
 const Home = () => {
   return (
@@ -16,21 +20,24 @@ const Home = () => {
         <AboutUs />
       </div>
       <div>
+        <Mosaic />
+      </div>
+      <div>
         <Carousel
           clients={[
             {
-              src: "https://play-lh.googleusercontent.com/FwrxfHaknUKLneazGpPsjJvQ4mUYKJkccj-efHNeXQISwCwqC9ymNAnqlAY5J5oHIOc",
-              alt: "Image 1",
+              src: awsLogo,
+              alt: "AWS",
               client: "Client 1",
             },
             {
-              src: "https://upload.wikimedia.org/wikipedia/commons/4/47/Logo_del_ITESM.svg",
-              alt: "Image 1",
+              src: dacompassLogo,
+              alt: "Dacompass",
               client: "Client 1",
             },
             {
-              src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png",
-              alt: "Image 1",
+              src: liverpoolLogo,
+              alt: "Liverpool",
               client: "Client 1",
             },
           ]}
