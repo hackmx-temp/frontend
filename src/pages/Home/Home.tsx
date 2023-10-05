@@ -35,7 +35,7 @@ const Home = () => {
           imageWidth="150px"
         />
       </div>
-      <Sponsors />
+      {/* <Sponsors /> */}
     </div>
   );
 };

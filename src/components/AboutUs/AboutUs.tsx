@@ -3,7 +3,7 @@ import { BigInfo } from "../BigInfo";
 import { ButtonMui } from "../ButtonMui";
 import theme from "../../theme/theme";
 import { MainInfoDescription, MainInfoText, MainInfoTitle } from "./styles";
-import AboutImage from "../../Assets/question-women.png";
+import AboutImage from "../../assets/question-women.png";
 import { Link } from "react-router-dom";
 
 const AboutUs = () => {
