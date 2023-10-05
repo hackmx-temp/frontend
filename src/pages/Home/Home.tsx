@@ -2,6 +2,7 @@ import React from "react";
 import { AboutUs } from "../../components/AboutUs";
 import { Footer } from "../../components/Footer";
 import { Carousel } from "../../components/Carousel";
+import { ImageMosaic } from "../../components/ImageMosaic";
 
 const Home = () => {
   return (
@@ -35,7 +36,7 @@ const Home = () => {
           imageWidth="150px"
         />
       </div>
-      {/* <Sponsors /> */}
+      <ImageMosaic />
     </div>
   );
 };
