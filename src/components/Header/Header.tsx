@@ -14,7 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { HeaderLogoImg, HeaderLogoImgContainer } from "./styles";
-import HackMx from "../../assets/hackmx-main.png";
+import HackMx from "../../Assets/hackmx-main.png";
 import theme from "../../theme/theme";
 import { Link } from "react-router-dom";
 

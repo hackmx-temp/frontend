@@ -6,9 +6,9 @@ import { MapComponent } from "../../components/MapComponent";
 import { Container, Grid } from "@mui/material";
 import { MainContainer } from "./styles";
 import { Mosaic } from "../../components/Mosaic";
-import awsLogo from "../../assets/sponsors/aws.png";
-import dacompassLogo from "../../assets/sponsors/dacompass.png";
-import liverpoolLogo from "../../assets/sponsors/liverpool.png";
+import awsLogo from "../../Assets/sponsors/aws.png";
+import dacompassLogo from "../../Assets/sponsors/dacompass.png";
+import liverpoolLogo from "../../Assets/sponsors/liverpool.png";
 
 const Home = () => {
   return (
