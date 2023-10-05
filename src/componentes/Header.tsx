@@ -84,7 +84,6 @@ const Header = () => {
         <List>
           {menuItems.map((item, index) => (
             <ListItem
-              button
               key={index}
               component={Link}
               to={item.link}
