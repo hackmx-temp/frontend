@@ -3,6 +3,9 @@ import { PaletteColor, ThemeOptions } from "@mui/material/styles";
 declare module "@mui/material/styles" {
   // To create new object inside theme
   interface Theme {
+    typography: {
+      fontFamily: string;
+    };
     color: {
       black: string;
       white: string;

@@ -1,12 +1,15 @@
 import React from "react";
 import { AboutUs } from "../../components/AboutUs";
-import { Footer } from "../../components/Footer";
 import { Carousel } from "../../components/Carousel";
 import Button from '@mui/material/Button';
 import Header from "../../componentes/Header";
 import { Link } from 'react-router-dom';
 
 
+import Chronogram from "../../components/Chronogram/Chronogram";
+import { MapComponent } from "../../components/MapComponent";
+import { Container, Grid } from "@mui/material";
+import { MainContainer } from "./styles";
 
 const Home = () => {
   return (
@@ -46,6 +49,9 @@ const Home = () => {
           width="100%"
           imageWidth="150px"
         />
+      </div>
+      <div>
+        <p>Section 5</p>
       </div>
     </div>
   );

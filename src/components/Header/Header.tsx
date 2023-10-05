@@ -80,7 +80,11 @@ export default function DrawerAppBar(props: Props) {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{
+              fontFamily: "Popins, sans-serif",
+              flexGrow: 1,
+              display: { xs: "none", sm: "block" },
+            }}
           >
             <HeaderLogoImgContainer>
               <HeaderLogoImg src={HackMx} />
@@ -96,6 +100,7 @@ export default function DrawerAppBar(props: Props) {
                       fontWeight: "600",
                       fontSize: "16px",
                       cursor: "pointer",
+                      fontFamily: "Popins, sans-serif",
                     }}
                   >
                     {item}
@@ -110,6 +115,7 @@ export default function DrawerAppBar(props: Props) {
                       fontWeight: "600",
                       fontSize: "16px",
                       cursor: "pointer",
+                      fontFamily: "Popins, sans-serif",
                     }}
                   >
                     {item}
