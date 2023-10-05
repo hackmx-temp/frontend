@@ -8,7 +8,7 @@ import { Autocomplete, Dialog, DialogActions, DialogContent, DialogContentText, 
 import MenuItem from '@mui/material/MenuItem';
 import { Checkbox } from '@mui/material';
 import './Registro.css';
-import { User, createUser, defaultCreateUser } from '../../models/User';
+import { User, createUser } from '../../models/User';
 import { Link } from 'react-router-dom';
 
 interface FormData {
@@ -74,7 +74,7 @@ function Registro() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
-    
+
     setFormData({ ...formData, [name]: value });
   };
 
@@ -151,7 +151,7 @@ function Registro() {
     necesitaAutobus1: null,
     campus: null,
     semestre: null,
-    situacionmedica:null,
+    situacionmedica: null,
     alergias: null,
   });
 
@@ -182,21 +182,19 @@ function Registro() {
         gender: formData.genero,
         enrollment_id: formData.matricula,
         university: 'Nombre de tu universidad',
-        is_from_tec: true, 
-        
+        is_from_tec: true,
+
       };
-      
+
       createUser(user).then((response) => {
         if (response.status === 201) {
           const user = response.data;
           var id: string = String(user.id);
-          console.log("ID length: " + id.length)
           if (id.length === 1) {
             id = '00' + id;
           } else if (id.length === 2) {
             id = '0' + id;
           }
-          console.log(id);
           setErrorDialog(false);
           setMessageDialog('Tu ID es: ' + id);
         } else {
@@ -256,7 +254,7 @@ function Registro() {
               </MenuItem>
             ))}
           </TextField>
-          
+
         </>
       );
     }
@@ -359,7 +357,7 @@ function Registro() {
     { id: 'apellidoMaterno', label: 'Apellido materno', placeholder: 'Apellido materno', required: true },
     { id: 'correo', label: 'Correo personal', placeholder: 'Correo personal', required: true },
     { id: 'telefono', label: 'Número telefónico', placeholder: 'Número telefónico', required: true },
-    
+
 
     {
       id: 'genero',
@@ -375,8 +373,8 @@ function Registro() {
       type: 'select',
       options: semestreOptions,
     },
-    
-    
+
+
     {
       id: 'campus',
       label: 'Campus',
@@ -408,7 +406,7 @@ function Registro() {
       options: necesitaAu1Options,
     },
 
-    
+
     { id: 'alergias', label: 'Alergias', placeholder: '¿Alguna alergia?', required: true },
     { id: 'situacionmedica', label: 'Condición Médica', placeholder: 'Condición Médica', required: true },
   ];
@@ -417,27 +415,30 @@ function Registro() {
     return (
       <Dialog
         open={dialogStatus}
-        onClose={() => setDialogStatus(false)}
+        onClose={(_, reason) => {
+          window.location.href = errorDialog ? '#' : '/';
+          setDialogStatus(false)
+        }}
       >
-        <DialogTitle id="alert-dialog-title" component="h5" sx={{ fontWeight: 'bold',textAlign:'center' }}>
+        <DialogTitle id="alert-dialog-title" component="h5" sx={{ fontWeight: 'bold', textAlign: 'center' }}>
           {errorDialog ? 'Error' : 'Registro exitoso'}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText color="textSecondary" sx={{textAlign:'center' }}>
+          <DialogContentText color="textSecondary" sx={{ textAlign: 'center' }}>
             {messageDialog}
           </DialogContentText>
         </DialogContent>
         <DialogActions style={{ justifyContent: 'center' }}>
           <Link to={errorDialog ? '#' : '/'}>
-          <Button
-            onClick={() => setDialogStatus(false)}
-            autoFocus
-            variant="contained"
-            className="custom-button"
-            style={{ marginTop: '20px' }}
-          >
-            Cerrar
-          </Button>
+            <Button
+              onClick={() => setDialogStatus(false)}
+              autoFocus
+              variant="contained"
+              className="custom-button"
+              style={{ marginTop: '20px' }}
+            >
+              Cerrar
+            </Button>
           </Link>
         </DialogActions>
       </Dialog>

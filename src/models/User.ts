@@ -28,6 +28,7 @@ export async function createUser(user: User) {
     });
 }
 
+// To debug
 export async function defaultCreateUser(){
     const user: User = {
         name: 'Juan',
