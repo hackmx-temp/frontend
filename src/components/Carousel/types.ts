@@ -26,5 +26,5 @@ export interface CarouselProps {
 }
 
 export interface ImageProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
