@@ -1,7 +1,7 @@
 import Home from "../pages/Home/Home";
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 import PublicRouter from "./PublicRouter";
-import Registro from "../pages/Home/Registro";
+import Registro from "../pages/Register/Registro";
 
 
 const routes: RouteObject[] = [

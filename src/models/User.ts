@@ -4,23 +4,21 @@ export type User = {
     name: string;
     last_name: string;
     email: string;
-    password: string;
     phone_number: string;
-    university: string;
     campus: string;
     career: string;
     semester: string;
-    is_from_tec: boolean;
     enrollment_id: string;
     gender: string;
+    bus_required: boolean;
 }
 
-const BASE_PATH = 'http://localhost:5000';
+// Get base path from environment variable
+const BASE_PATH = process.env.REACT_APP_BASE_PATH || 'http://localhost:5000';
 
 export async function createUser(user: User) {
     const json = JSON.stringify(user);
-    const url = `${BASE_PATH}/hackMX/auth/signup`;
-    console.log(json);
+    const url = `${BASE_PATH}/hackMX/user`;
     return await axios.post(url, json, {
         headers: {
             'Content-Type': 'application/json'
@@ -28,21 +26,7 @@ export async function createUser(user: User) {
     });
 }
 
-// To debug
-export async function defaultCreateUser(){
-    const user: User = {
-        name: 'Juan',
-        last_name: 'Perez Martinez',
-        email: 'ex@ex.com',
-        password: 'Hola#124',
-        phone_number: '1234567890',
-        university: 'ITESM',
-        campus: 'MTY',
-        career: 'ITC',
-        semester: '8',
-        is_from_tec: true,
-        gender: 'M',
-        enrollment_id: 'A01234567'
-    }
-    return await createUser(user);
+export async function getCount() {
+    const url = `${BASE_PATH}/hackMX/user/count`;
+    return await axios.get(url);
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -8,7 +8,7 @@ import { Autocomplete, Dialog, DialogActions, DialogContent, DialogContentText, 
 import MenuItem from '@mui/material/MenuItem';
 import { Checkbox } from '@mui/material';
 import './Registro.css';
-import { User, createUser } from '../../models/User';
+import { User, createUser, getCount } from '../../models/User';
 import { Link } from 'react-router-dom';
 
 interface FormData {
@@ -63,13 +63,25 @@ function Registro() {
   ];
   const semestreOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
   const necesitaAu1Options = ["Si", "No"];
-  const [showMatriculaCarrera, setShowMatriculaCarrera] = useState(false);
   const [checked, setChecked] = useState(false);
   const [showError, setShowError] = useState(false);
   const [dialogStatus, setDialogStatus] = useState(false);
-  const [showOtroMessage, setShowOtroMessage] = useState(false);
   const [errorDialog, setErrorDialog] = useState(false);
   const [messageDialog, setMessageDialog] = useState('');
+  const [countUsers, setCountUsers] = useState(0);
+  const INTERVAL_MILISECONDS = 30000;
+
+  // Fetch count users every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getCount().then((response) => {
+        setCountUsers(response.data.count);
+        if (response.data >= 200) {
+          window.location.href = '/registro-cerrado';
+        }
+      }).catch((error) => {})}, INTERVAL_MILISECONDS);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -174,37 +186,30 @@ function Registro() {
         name: formData.nombre,
         last_name: formData.apellidoPaterno + ' ' + formData.apellidoMaterno,
         email: formData.correo,
-        password: generatePass(),
         phone_number: formData.telefono,
         campus: formData.campus,
         career: formData.carrera,
         semester: formData.semestre,
         gender: formData.genero,
         enrollment_id: formData.matricula,
-        university: 'Nombre de tu universidad',
-        is_from_tec: true,
-
+        bus_required: formData.necesitaAutobus1.toLowerCase() === 'si' ? true : false,
       };
 
       createUser(user).then((response) => {
-        if (response.status === 201) {
-          const user = response.data;
-          var id: string = String(user.id);
-          if (id.length === 1) {
-            id = '00' + id;
-          } else if (id.length === 2) {
-            id = '0' + id;
-          }
-          setErrorDialog(false);
-          setMessageDialog('Tu ID es: ' + id);
-        } else {
-          setErrorDialog(true);
-          console.log(response.data)
-          setMessageDialog('Hubo un error: ' + response.data);
+        const user = response.data;
+        var id: string = String(user.id);
+        if (id.length === 1) {
+          id = '00' + id;
+        } else if (id.length === 2) {
+          id = '0' + id;
         }
+        setErrorDialog(false);
+        setMessageDialog('Tu ID es: ' + id);
       }).catch((error) => {
-        setErrorDialog(true);
-        setMessageDialog("Error no definido: " + error.message);
+        if(error.response){
+          setErrorDialog(true);
+          setMessageDialog(error.message);
+        }
       });
       setDialogStatus(true);
     }
@@ -415,7 +420,7 @@ function Registro() {
     return (
       <Dialog
         open={dialogStatus}
-        onClose={(_, reason) => {
+        onClose={() => {
           window.location.href = errorDialog ? '#' : '/';
           setDialogStatus(false)
         }}
@@ -458,13 +463,16 @@ function Registro() {
         <Grid item xs={12} sm={6}>
           <Card className="form-container">
             <CardContent>
-              <Typography gutterBottom variant="h2" sx={{ textAlign: 'center', marginBottom: '46px', marginTop: '20px', fontSize: '58px' }}>
+              <Typography gutterBottom overflow='hidden' sx={{ typography: { sm: 'h2', xs: 'h5' }, textAlign: 'center', marginTop: '20px' }}>
                 <span style={{ fontStyle: 'italic', fontWeight: 'bold' }}>Regístrate</span>{' '}
                 <span style={{ fontWeight: 'bold' }}>para</span>{' '}
                 <span style={{ color: '#3B5998', fontWeight: 'bold' }}>HackMX 5</span>
               </Typography>
-              <Typography variant="body2" color="textSecondary" component="p" gutterBottom sx={{ textAlign: 'center', marginBottom: '40px', fontWeight: 'bold', fontSize: '15px', color: 'black' }}>
-                Tus datos serán usados sin fines de lucro y de forma segura. El formulario estará abierto hasta el 25 de septiembre a las 11:59 pm. ¡No te quedes fuera!
+              <Typography variant="body1" color="textSecondary" component="p" sx={{ textAlign: 'center', marginBottom: '40px', fontWeight: 'bold', fontSize: '15px', color: 'black' }}>
+                Tus datos serán usados sin fines de lucro y de forma segura. El formulario cerrará cuando contemos con 200 hackers. ¡No te quedes fuera!
+              </Typography>
+              <Typography variant='h6' textAlign='center'>
+                Quedan {200 - countUsers} lugares
               </Typography>
               <form onSubmit={handleSubmit}>
                 <Grid container spacing={2} style={{ marginTop: '70px' }}>
