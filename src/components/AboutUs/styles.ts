@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import theme from "../../theme/theme";
-
 export const MainInfoText = styled.div`
   padding: 0 2rem;
   font-family: "Popins", sans-serif;
@@ -17,3 +16,10 @@ export const MainInfoDescription = styled.p`
   font-weight: 400;
   font-family: "Popins", sans-serif;
 `;
+
+export const ValuesContainer = styled.div`
+  padding: 2rem;
+  background-color: ${theme.palette.primary.light};
+  border-radius: 25px;
+  margin: 0 2rem;
+`

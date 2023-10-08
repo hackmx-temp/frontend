@@ -70,6 +70,7 @@ function Registro() {
   const [messageDialog, setMessageDialog] = useState('');
   const [countUsers, setCountUsers] = useState(0);
   const INTERVAL_MILISECONDS = 30000;
+  const MATRICULA_REGEX = new RegExp('A0[0-9]{7}');
 
   // Fetch count users every 30 seconds
   useEffect(() => {
@@ -79,7 +80,8 @@ function Registro() {
         if (response.data >= 200) {
           window.location.href = '/registro-cerrado';
         }
-      }).catch((error) => {})}, INTERVAL_MILISECONDS);
+      }).catch((error) => { })
+    }, INTERVAL_MILISECONDS);
     return () => clearInterval(interval);
   }, []);
 
@@ -113,6 +115,10 @@ function Registro() {
 
     if (!formData.semestre) {
       errors.semestre = 'Este campo es obligatorio';
+    }
+
+    if (!MATRICULA_REGEX.test(formData.matricula)) {
+      errors.matricula = 'Matrícula inválida';
     }
 
     if (!formData.apellidoPaterno) {
@@ -193,6 +199,8 @@ function Registro() {
         gender: formData.genero,
         enrollment_id: formData.matricula,
         bus_required: formData.necesitaAutobus1.toLowerCase() === 'si' ? true : false,
+        medical_condition: formData.situacionmedica || 'none',
+        allergies: formData.alergias || 'none',
       };
 
       createUser(user).then((response) => {
@@ -206,7 +214,7 @@ function Registro() {
         setErrorDialog(false);
         setMessageDialog('Tu ID es: ' + id);
       }).catch((error) => {
-        if(error.response){
+        if (error.response) {
           setErrorDialog(true);
           setMessageDialog(error.message);
         }
@@ -298,6 +306,7 @@ function Registro() {
           }}
           renderInput={(params) =>
             <TextField
+              required
               {...params}
               label={field.label}
               helperText={errors[field.id] || helperGenderText} />}
@@ -339,20 +348,6 @@ function Registro() {
       }}
     />
     );
-  }
-  function generatePass() {
-    let pass = '';
-    let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
-      'abcdefghijklmnopqrstuvwxyz0123456789@#$';
-
-    for (let i = 1; i <= 10; i++) {
-      let char = Math.floor(Math.random()
-        * str.length + 1);
-
-      pass += str.charAt(char)
-    }
-
-    return pass;
   }
 
 
@@ -399,7 +394,7 @@ function Registro() {
     {
       id: 'matricula',
       label: 'Matrícula',
-      placeholder: 'Matrícula',
+      placeholder: 'A0XXXXXXX',
       required: true,
     },
     {
@@ -412,8 +407,8 @@ function Registro() {
     },
 
 
-    { id: 'alergias', label: 'Alergias', placeholder: '¿Alguna alergia?', required: true },
-    { id: 'situacionmedica', label: 'Condición Médica', placeholder: 'Condición Médica', required: true },
+    { id: 'alergias', label: 'Alergias', placeholder: '¿Alguna alergia?', required: false },
+    { id: 'situacionmedica', label: 'Condición Médica', placeholder: 'Condición Médica', required: false },
   ];
 
   const dialog = () => {
@@ -500,14 +495,15 @@ function Registro() {
                     name="terminosYCondiciones"
                   />
                   <span style={{ fontSize: '12px' }}>
-                    Acepto los{' '}
-                    <a href="https://tec.mx/es/politicas-de-privacidad-del-tecnologico-de-monterrey">
-                      Términos y Condiciones
+                    He leido y aceptado los términos de {' '}
+                    <a href="https://tec.mx/es/aviso-privacidad-participantes-expositores-panelistas-conferencistas-moderadores">
+                      AVISO DE PRIVACIDAD
                     </a>
                   </span>
                 </div>
-                <p style={{ color: '#b81414', fontSize: '12px', fontWeight: 'bold', display: 'flex', justifyContent: 'center', }}>Selecciona los términos y condiciones antes de enviarlo</p>
-
+                {checked ? null :
+                  <p style={{ color: '#b81414', fontSize: '12px', fontWeight: 'bold', display: 'flex', justifyContent: 'center', }}>Selecciona los términos y condiciones antes de enviarlo</p>
+                }
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '10%' }}>
                   <Button
                     type="submit"
