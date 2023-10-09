@@ -16,7 +16,7 @@ import Button from "@mui/material/Button";
 import { HeaderLogoImg, HeaderLogoImgContainer } from "./styles";
 import HackMx from "../../assets/hackmx-main.png";
 import theme from "../../theme/theme";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface Props {
   /**
@@ -32,6 +32,7 @@ const navItems = ["Inicio", "Registro"];
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const location = useLocation();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -46,19 +47,36 @@ export default function DrawerAppBar(props: Props) {
       </Link>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {
+          location.pathname === "/registro" ? (
+            <Link 
+              to="/" 
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <ListItem disablePadding>
+                <ListItemButton sx={{ textAlign: "center" }}>
+                  <ListItemText primary="Inicio" />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          ) : (
+            <Link 
+              to="/registro"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <ListItem disablePadding>
+                <ListItemButton sx={{ textAlign: "center" }}>
+                  <ListItemText primary="Registro" />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          )
+        }
       </List>
     </Box >
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -103,6 +121,7 @@ export default function DrawerAppBar(props: Props) {
                       fontSize: "16px",
                       cursor: "pointer",
                       fontFamily: "Popins, sans-serif",
+                      display: location.pathname === "/" ? null : "none",
                     }}
                   >
                     {item}
@@ -118,6 +137,7 @@ export default function DrawerAppBar(props: Props) {
                       fontSize: "16px",
                       cursor: "pointer",
                       fontFamily: "Popins, sans-serif",
+                      display: location.pathname === "/registro" ? null : "none",
                     }}
                   >
                     {item}

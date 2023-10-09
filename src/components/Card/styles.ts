@@ -13,6 +13,10 @@ export const CardContainer = styled.div<{ width?: string; height?: string }>`
     transition: box-shadow 0.3s ease;
     padding: 1rem;
 
+    @media (max-width: 390px) {
+        width: 80%;
+    }
+
     &:hover {
         box-shadow: 0 8px 6px rgba(0, 0, 0, 0.2);
     }

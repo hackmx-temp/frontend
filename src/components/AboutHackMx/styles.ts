@@ -3,8 +3,8 @@ import theme from '../../theme/theme';
 
 export const Wrapper = styled.div<{ isVisible: boolean }>`
     opacity: ${(props) => (props.isVisible ? 1 : 0)};
-    transform: translateY(${(props) => (props.isVisible ? 0 : '20px')});
-    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    transform: translateY(${(props) => (props.isVisible ? 0 : '40px')});
+    transition: opacity 1.3s ease-in-out, transform 1.3s ease-in-out;
     width: 100%;
     height: auto;
     background-color: ${theme.color.white};
@@ -25,6 +25,10 @@ export const Header = styled.h2`
     margin-bottom: 1rem;
     text-align: center;
     color: ${theme.color.mainBlue};
+    
+    @media (max-width: 768px) {
+        font-size: 2.5rem;
+    }
 `;
 
 export const CardsWrapper = styled.div`

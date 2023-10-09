@@ -15,6 +15,10 @@ export const Header = styled.h2`
   margin: 20px 0;
   text-align: center;
   color: ${theme.color.white};
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+}
 `;
 
 export const ArrowButton = styled.button<{ left?: boolean; right?: boolean }>`

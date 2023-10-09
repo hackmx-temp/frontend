@@ -10,15 +10,15 @@ import idea from '../../assets/cardImages/idea.png'
 const AboutHackMx = () => {
   const [isWelcomeVisible, setIsWelcomeVisible] = useState(false);
   const welcomeWrapper = useRef<HTMLDivElement | null>(null);
-  // const [isDetailsVisible, setIsDetailsVisible] = useState(false);
-  // const detailsWrapper = useRef<HTMLDivElement | null>(null);
+  const [isDetailsVisible, setIsDetailsVisible] = useState(false);
+  const detailsWrapper = useRef<HTMLDivElement | null>(null);
   
   useEffect(() => {
     const handleScroll = () => {
       if (welcomeWrapper.current) {
         const rect = welcomeWrapper.current.getBoundingClientRect();
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-        if (rect.top >= 0 && rect.bottom <= viewportHeight) {
+        if (rect.top <= viewportHeight && rect.bottom >= 0) {
           if (!isWelcomeVisible) {
             setIsWelcomeVisible(true);
           }
@@ -29,19 +29,19 @@ const AboutHackMx = () => {
         }
       } 
       
-      // if (detailsWrapper.current) {
-      //   const rect = detailsWrapper.current.getBoundingClientRect();
-      //   const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-      //   if (rect.top >= 0 && rect.bottom <= viewportHeight) {
-      //     if (!isDetailsVisible) {
-      //       setIsDetailsVisible(true);
-      //     }
-      //   } else {
-      //     if (rect.bottom < 0 || rect.top > viewportHeight) {
-      //       setIsDetailsVisible(false);
-      //     }
-      //   }
-      // }
+      if (detailsWrapper.current) {
+        const rect = detailsWrapper.current.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        if (rect.top <= viewportHeight && rect.bottom >= 0) {
+          if (!isDetailsVisible) {
+            setIsDetailsVisible(true);
+          }
+        } else {
+          if (rect.bottom < 0 || rect.top > viewportHeight) {
+            setIsDetailsVisible(false);
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -50,7 +50,7 @@ const AboutHackMx = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isWelcomeVisible, isDetailsVisible]);
 
   return (
     <div>
@@ -70,7 +70,7 @@ const AboutHackMx = () => {
         </BasicContainer>
       </Wrapper>
       {/* <Wrapper ref={detailsWrapper} isVisible={isDetailsVisible}> */}
-      <Wrapper isVisible={true}>
+      <Wrapper ref={detailsWrapper} isVisible={isDetailsVisible}>
         <Header>Acerca de HackMx</Header>
         <CardsWrapper>
           <Card
@@ -102,7 +102,7 @@ const AboutHackMx = () => {
           <SmallHeader>¡Es momento de demostrar tu potencial!</SmallHeader>
           <CustomText
             content={`
-          Te esperamos en las instalaciones del [Campus Ciudad de México] este próximo [viernes 27 y sábado 28 de octubre de 2023]. Sé parte de la innovación, sé parte de HackMx5.
+          Te esperamos en las instalaciones del [Campus Ciudad de México] este próximo [viernes 27 y sábado 28 de octubre de 2023]. Sé parte de la innovación. Sé parte de HackMx5.
           `}
             color={theme.color.mainOrange}
             alignment='center'
