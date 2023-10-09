@@ -69,7 +69,7 @@ function Registro() {
   const [errorDialog, setErrorDialog] = useState(false);
   const [messageDialog, setMessageDialog] = useState('');
   const [countUsers, setCountUsers] = useState(0);
-  const INTERVAL_MILISECONDS = 30000;
+  const INTERVAL_MILISECONDS = 2000;
   const MATRICULA_REGEX = new RegExp('A0[0-9]{7}');
 
   // Fetch count users every 30 seconds
@@ -199,7 +199,7 @@ function Registro() {
         gender: formData.genero,
         enrollment_id: formData.matricula,
         bus_required: formData.necesitaAutobus1.toLowerCase() === 'si' ? true : false,
-        medical_condition: formData.situacionmedica || 'none',
+        medical_conditions: formData.situacionmedica || 'none',
         allergies: formData.alergias || 'none',
       };
 

@@ -17,14 +17,14 @@ const AboutUs = () => {
       <Grid item xs={5}>
         <Typography variant="h5" textAlign='center'>Es un evento de colaboración dónde participantes con habilidades en </Typography>
       </Grid>
-      <Grid item xs={2} md={1}>
+      <Grid item xs={5} md={1}>
         <ValuesContainer>
           <Typography variant="h6" textAlign='center' fontWeight='bold'>
             Emprendimiento
           </Typography>
         </ValuesContainer>
       </Grid>
-      <Grid item xs={2} md={1}>
+      <Grid item xs={5} md={1}>
         <ValuesContainer>
           <Typography variant="h6" textAlign='center' fontWeight='bold'>
             Programación
@@ -34,14 +34,14 @@ const AboutUs = () => {
       <Grid item xs={0} md={1} display='flex' justifyContent='center'>
         <img src='question-women.png' alt="AboutImage" />
       </Grid>
-      <Grid item xs={2} md={1}>
+      <Grid item xs={5} md={1}>
         <ValuesContainer>
           <Typography variant="h6" textAlign='center' fontWeight='bold'>
             Diseño
           </Typography>
         </ValuesContainer>
       </Grid>
-      <Grid item xs={2} md={1}>
+      <Grid item xs={5} md={1}>
         <ValuesContainer>
           <Typography variant="h6" textAlign='center' fontWeight='bold'>
             Marketing
@@ -53,22 +53,22 @@ const AboutUs = () => {
           Trabajan en equipos desarrollando soluciones innovadoras para problemas específicos planteados por patrocinadores. Los participantes crean prototipos de:
         </Typography>
       </Grid>
-      <Grid item xs={1}>
-        <Box m={1} p='2rem' bgcolor={theme.color.accent} borderRadius='25px'>
+      <Grid item xs={5} md={1}>
+        <Box ml='2rem' mr='2rem' p='2rem' bgcolor={theme.color.accent} borderRadius='25px'>
           <Typography variant="h6" textAlign='center' fontWeight='bold'>
             Marketing
           </Typography>
         </Box>
       </Grid>
-      <Grid item xs={1}>
-        <Box m={1} p='2rem' bgcolor={theme.color.accent} borderRadius='25px'>
+      <Grid item xs={5} md={1}>
+        <Box ml='2rem' mr='2rem' p='2rem' bgcolor={theme.color.accent} borderRadius='25px'>
           <Typography variant="h6" textAlign='center' fontWeight='bold'>
             Hardware
           </Typography>
         </Box>
       </Grid>
-      <Grid item xs={1}>
-        <Box m={1} p='2rem' bgcolor={theme.color.accent} borderRadius='25px'>
+      <Grid item xs={5} md={1}>
+        <Box ml='2rem' mr='2rem' p='2rem' bgcolor={theme.color.accent} borderRadius='25px'>
           <Typography variant="h5" textAlign='center' fontWeight='bold'>
             Servicios web
           </Typography>
@@ -79,12 +79,12 @@ const AboutUs = () => {
           Para su presentación y premiación
         </Typography>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item md={2} xs={5}>
         <Typography variant="h4" fontWeight='bold' textAlign='center' p={5}>
           ATREVETE A VIVIR LA EXPERIENICA QUE TE OFRECE EL HACKMX5
         </Typography>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item md={2} xs={5}>
         <Link to='/registro' style={{
           color: 'inherit',
           textDecoration: 'inherit',

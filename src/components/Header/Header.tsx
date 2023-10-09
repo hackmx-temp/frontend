@@ -27,7 +27,9 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Inicio", "Registro"];
+const navItems = [
+  {name: "Inicio", route: '/'}, 
+  {name: "Registro", route: '/registro'}];
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
@@ -47,9 +49,11 @@ export default function DrawerAppBar(props: Props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem key={item.name} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+              <Link to={item.route} style={{color: 'inherit', textDecoration: 'none'}}>
+                <ListItemText primary={item.name} />
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}
@@ -92,8 +96,8 @@ export default function DrawerAppBar(props: Props) {
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) =>
-              item === "Registro" ? (
-                <Link to="/registro" key={item}>
+              item.name === "Registro" ? (
+                <Link to="/registro" key={item.name}>
                   <Button
                     sx={{
                       color: theme.color.primary,
@@ -103,13 +107,13 @@ export default function DrawerAppBar(props: Props) {
                       fontFamily: "Popins, sans-serif",
                     }}
                   >
-                    {item}
+                    {item.name}
                   </Button>
                 </Link>
               ) : (
-                <Link to="/" key={item}>
+                <Link to="/" key={item.name}>
                   <Button
-                    key={item}
+                    key={item.name}
                     sx={{
                       color: theme.color.primary,
                       fontWeight: "600",
@@ -118,7 +122,7 @@ export default function DrawerAppBar(props: Props) {
                       fontFamily: "Popins, sans-serif",
                     }}
                   >
-                    {item}
+                    {item.name}
                   </Button>
                 </Link>
               )

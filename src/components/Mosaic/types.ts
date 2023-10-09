@@ -1,49 +1,49 @@
 
 const previousHacksImgs = [
     {
-        img: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/207/teams-1140x684.jpg',
+        img: 'hacksPasados/hack4women.png',
         title: 'Hackathon 1',
         rows: 2,
         cols: 2,
-    }, 
+    },
     {
-        img: 'https://assets.ey.com/content/dam/ey-sites/ey-com/en_be/news/2020/3/ey-online-hackathon-hack-the-crisis.jpg',
+        img: 'hacksPasados/hack4women.png',
         title: 'Hackathon 2',
     },
     {
-        img: 'https://assets.ey.com/content/dam/ey-sites/ey-com/en_be/news/2020/3/ey-online-hackathon-hack-the-crisis.jpg',
+        img: 'hacksPasados/HackMX2.png',
         title: 'Hackathon 3',
     },
     {
-        img: 'https://assets.ey.com/content/dam/ey-sites/ey-com/en_be/news/2020/3/ey-online-hackathon-hack-the-crisis.jpg',
+        img: 'hacksPasados/Quantum.png',
         title: 'Hackathon 4',
     },
     {
-        img: 'https://assets.ey.com/content/dam/ey-sites/ey-com/en_be/news/2020/3/ey-online-hackathon-hack-the-crisis.jpg',
+        img: 'hacksPasados/HackMXCEM.png',
         title: 'Hackathon 5',
     },
     {
-        img: 'https://assets.ey.com/content/dam/ey-sites/ey-com/en_be/news/2020/3/ey-online-hackathon-hack-the-crisis.jpg',
+        img: 'hacksPasados/hack4women.png',
         title: 'Hackathon 1',
         rows: 2,
         cols: 2,
-    }, 
+    },
     {
-        img: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/207/teams-1140x684.jpg',
+        img: 'hacksPasados/hack4women.png',
         title: 'Hackathon 2',
     },
     {
-        img: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/207/teams-1140x684.jpg',
-        title: 'Hackathon 2',
+        img: 'hacksPasados/HackMX2.png',
+        title: 'Hackathon 3',
     },
     {
-        img: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/207/teams-1140x684.jpg',
-        title: 'Hackathon 2',
+        img: 'hacksPasados/Quantum.png',
+        title: 'Hackathon 4',
     },
     {
-        img: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/207/teams-1140x684.jpg',
-        title: 'Hackathon 2',
+        img: 'hacksPasados/HackMXCEM.png',
+        title: 'Hackathon 5',
     },
 ]
 
-export {previousHacksImgs}
+export { previousHacksImgs }
