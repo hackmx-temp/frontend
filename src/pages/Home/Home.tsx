@@ -3,31 +3,20 @@ import { AboutUs } from "../../components/AboutUs";
 import { Carousel } from "../../components/Carousel";
 import Chronogram from "../../components/Chronogram/Chronogram";
 import { MapComponent } from "../../components/MapComponent";
-import { Button, Container, Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import { MainContainer } from "./styles";
 import { Mosaic } from "../../components/Mosaic";
-import awsLogo from "../../Assets/sponsors/aws.png";
-import dacompassLogo from "../../Assets/sponsors/dacompass.png";
-import liverpoolLogo from "../../Assets/sponsors/liverpool.png";
-import { Link } from "react-router-dom";
+import awsLogo from "../../assets/sponsors/aws.png";
+import dacompassLogo from "../../assets/sponsors/dacompass.png";
+import liverpoolLogo from "../../assets/sponsors/liverpool.png";
+import { RegistryBanner } from "../../components/RegistryBanner";
 
 const Home = () => {
   return (
     <div>
-      <div style={{ position: 'relative', textAlign: 'center' }}>
-          <img src="/HACK2023INICIO.png" alt="Tu imagen" className="imagen-home" style={{ width: '100%' }} />
-          <Link to="/registro">
-            <Button variant="contained" style={{ position: 'absolute', top: '80%', left: '50%', transform: 'translate(-50%, -50%)', width: '18%', height: '9%', textTransform: 'uppercase', borderRadius: '26px', color: '#FFFFFF', fontSize: '2vw' }}>
-              Registrate
-            </Button>
-          </Link>
-        </div>
-      <div>
-        <AboutUs />
-      </div>
-      <div>
-        <Mosaic />
-      </div>
+      <RegistryBanner />
+      <AboutUs />
+      <Mosaic />
       <div>
         <Carousel
           clients={[

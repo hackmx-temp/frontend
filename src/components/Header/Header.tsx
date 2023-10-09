@@ -14,7 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { HeaderLogoImg, HeaderLogoImgContainer } from "./styles";
-import HackMx from "../../Assets/hackmx-main.png";
+import HackMx from "../../assets/hackmx-main.png";
 import theme from "../../theme/theme";
 import { Link } from "react-router-dom";
 
@@ -39,11 +39,11 @@ export default function DrawerAppBar(props: Props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      {/* <Typography variant="h6" sx={{ my: 2 }}> */}
-      <HeaderLogoImgContainer>
-        <HeaderLogoImg src={HackMx} size="small" />
-      </HeaderLogoImgContainer>
-      {/* </Typography> */}
+      <Link to="/">
+        <HeaderLogoImgContainer>
+          <HeaderLogoImg src={HackMx} size="small" />
+        </HeaderLogoImgContainer>
+      </Link>
       <Divider />
       <List>
         {navItems.map((item) => (
@@ -54,7 +54,7 @@ export default function DrawerAppBar(props: Props) {
           </ListItem>
         ))}
       </List>
-    </Box>
+    </Box >
   );
 
   const container =
@@ -86,9 +86,11 @@ export default function DrawerAppBar(props: Props) {
               display: { xs: "none", sm: "block" },
             }}
           >
-            <HeaderLogoImgContainer>
-              <HeaderLogoImg src={HackMx} />
-            </HeaderLogoImgContainer>
+            <Link to="/">
+              <HeaderLogoImgContainer>
+                <HeaderLogoImg src={HackMx} />
+              </HeaderLogoImgContainer>
+            </Link>
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) =>
