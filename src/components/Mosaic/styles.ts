@@ -1,6 +1,22 @@
 import styled, { css } from 'styled-components';
 import theme from '../../theme/theme';
 
+export const HeaderContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${theme.color.mainBlue};
+  font-family: ${theme.typography.fontFamily};
+`;
+
+export const Header = styled.h2`
+  font-weight: 300;
+  font-size: 3.5rem;
+  margin: 20px 0;
+  text-align: center;
+  color: ${theme.color.white};
+`;
+
 export const ArrowButton = styled.button<{ left?: boolean; right?: boolean }>`
 position: absolute;
 top: 50%;

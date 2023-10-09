@@ -14,7 +14,7 @@ const fadeIn = keyframes`
 export const BannerContainer = styled.div`
     position: relative;
     width: 100%;
-    height: auto;
+    height: 100%;
 `;
 
 export const Image = styled.img`
@@ -25,7 +25,7 @@ export const Image = styled.img`
 `;
 
 export const StyledButton = styled.button`
-    background-color: ${theme.color.primary};
+    background-color: ${theme.color.mainBlue};
     border: none;
     border-radius: 10px;
     color: ${theme.color.white};

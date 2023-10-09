@@ -75,7 +75,7 @@ export default function DrawerAppBar(props: Props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
-            <MenuIcon sx={{ color: theme.color.primary }} />
+            <MenuIcon sx={{ color: theme.color.mainBlue }} />
           </IconButton>
           <Typography
             variant="h6"
@@ -98,7 +98,7 @@ export default function DrawerAppBar(props: Props) {
                 <Link to="/registro" key={item}>
                   <Button
                     sx={{
-                      color: theme.color.primary,
+                      color: theme.color.mainBlue,
                       fontWeight: "600",
                       fontSize: "16px",
                       cursor: "pointer",
@@ -113,7 +113,7 @@ export default function DrawerAppBar(props: Props) {
                   <Button
                     key={item}
                     sx={{
-                      color: theme.color.primary,
+                      color: theme.color.mainBlue,
                       fontWeight: "600",
                       fontSize: "16px",
                       cursor: "pointer",

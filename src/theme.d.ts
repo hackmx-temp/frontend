@@ -21,7 +21,8 @@ declare module "@mui/material/styles" {
         l4: string;
         l5: string;
       };
-      primary: string;
+      mainBlue: string;
+      mainOrange: string;
       accent: string;
       success: {
         d4: string;
@@ -85,7 +86,8 @@ declare module "@mui/material/styles" {
         l4: React.CSSProperties["color"];
         l5: React.CSSProperties["color"];
       };
-      primary: React.CSSProperties["color"];
+      mainBlue: React.CSSProperties["color"];
+      mainOrange: React.CSSProperties["color"];
       accent: React.CSSProperties["color"];
       success: {
         d4: React.CSSProperties["color"];
