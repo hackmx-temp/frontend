@@ -3,7 +3,7 @@ import { Box, IconButton, ImageList, ImageListItem, Stack, Typography } from "@m
 import { previousHacksImgs } from "./types"
 import theme from "../../theme/theme";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
-import { ArrowButton } from "./styles";
+import { ArrowButton, Header, HeaderContainer } from "./styles";
 
 function srcset(image: string, size: number, rows = 1, cols = 1) {
     return {
@@ -67,7 +67,10 @@ const Mosaic = () => {
     return (
         <>
             <Box>
-                <Typography sx={{ textAlign: 'center' }} bgcolor={theme.color.primary} pt={1} pb={1} color={theme.color.white} variant="h2">Hacks anteriores</Typography>
+                <HeaderContainer>
+                    <Header>Descubre nuestros Hacks pasados</Header>
+                </HeaderContainer>
+                {/* <Typography sx={{ textAlign: 'center' }} bgcolor={theme.color.mainBlue} pt={1} pb={1} color={theme.color.white} variant="h2">Hacks anteriores</Typography> */}
                 <Stack textAlign='center' display='flex' flexDirection='row' position='relative' justifyContent='center'>
                     <ArrowButton onClick={handlePrevClick} left>
                         <IconButton

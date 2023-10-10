@@ -20,7 +20,8 @@ const theme = createTheme({
       l4: "#F5F5F5",
       l5: "#FAFAFA",
     },
-    primary: "#0E5FAF",
+    mainBlue: "#0E5FAF",
+    mainOrange: "#F37A09",
     accent: "#FA9507",
     success: {
       d4: "#224E3A",

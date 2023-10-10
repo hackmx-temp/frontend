@@ -111,10 +111,11 @@ export const Image = styled.img<ImageProps>`
 export const CirclesContainer = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 10px;
 `;
 
 export const Circle = styled(FiberManualRecord)<{ active: boolean }>`
-  opacity: ${({ active }) => (active ? 1 : 0.5)};
+  opacity: ${({ active }) => (active ? 1 : 0.1)};
   margin: 0 2px;
   color: #000;
 `;
