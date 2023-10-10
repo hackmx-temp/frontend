@@ -1,49 +1,53 @@
+import Image1 from '../../assets/previousHacks/hack4women.png'
+import Image2 from '../../assets/previousHacks/HackMX2.png'
+import Image3 from '../../assets/previousHacks/Quantum.png'
+import Image4 from '../../assets/previousHacks/HackMXCEM.png'
 
 const previousHacksImgs = [
     {
-        img: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/207/teams-1140x684.jpg',
+        img: Image1,
         title: 'Hackathon 1',
         rows: 2,
         cols: 2,
-    }, 
+    },
     {
-        img: 'https://assets.ey.com/content/dam/ey-sites/ey-com/en_be/news/2020/3/ey-online-hackathon-hack-the-crisis.jpg',
+        img: Image1,
         title: 'Hackathon 2',
     },
     {
-        img: 'https://assets.ey.com/content/dam/ey-sites/ey-com/en_be/news/2020/3/ey-online-hackathon-hack-the-crisis.jpg',
+        img: Image2,
         title: 'Hackathon 3',
     },
     {
-        img: 'https://assets.ey.com/content/dam/ey-sites/ey-com/en_be/news/2020/3/ey-online-hackathon-hack-the-crisis.jpg',
+        img: Image3,
         title: 'Hackathon 4',
     },
     {
-        img: 'https://assets.ey.com/content/dam/ey-sites/ey-com/en_be/news/2020/3/ey-online-hackathon-hack-the-crisis.jpg',
+        img: Image4,
         title: 'Hackathon 5',
     },
     {
-        img: 'https://assets.ey.com/content/dam/ey-sites/ey-com/en_be/news/2020/3/ey-online-hackathon-hack-the-crisis.jpg',
+        img: Image3,
         title: 'Hackathon 1',
         rows: 2,
         cols: 2,
-    }, 
+    },
     {
-        img: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/207/teams-1140x684.jpg',
+        img: Image2,
         title: 'Hackathon 2',
     },
     {
-        img: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/207/teams-1140x684.jpg',
-        title: 'Hackathon 2',
+        img: Image4,
+        title: 'Hackathon 3',
     },
     {
-        img: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/207/teams-1140x684.jpg',
-        title: 'Hackathon 2',
+        img: Image1,
+        title: 'Hackathon 4',
     },
     {
-        img: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/207/teams-1140x684.jpg',
-        title: 'Hackathon 2',
+        img: Image2,
+        title: 'Hackathon 5',
     },
 ]
 
-export {previousHacksImgs}
+export { previousHacksImgs }
