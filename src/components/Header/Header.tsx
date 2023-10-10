@@ -27,7 +27,9 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Inicio", "Registro"];
+const navItems = [
+  {name: "Inicio", route: '/'}, 
+  {name: "Registro", route: '/registro'}];
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
@@ -112,8 +114,8 @@ export default function DrawerAppBar(props: Props) {
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) =>
-              item === "Registro" ? (
-                <Link to="/registro" key={item}>
+              item.name === "Registro" ? (
+                <Link to="/registro" key={item.name}>
                   <Button
                     sx={{
                       color: theme.color.mainBlue,
@@ -124,13 +126,13 @@ export default function DrawerAppBar(props: Props) {
                       display: location.pathname === "/" ? null : "none",
                     }}
                   >
-                    {item}
+                    {item.name}
                   </Button>
                 </Link>
               ) : (
-                <Link to="/" key={item}>
+                <Link to="/" key={item.name}>
                   <Button
-                    key={item}
+                    key={item.name}
                     sx={{
                       color: theme.color.mainBlue,
                       fontWeight: "600",
@@ -140,7 +142,7 @@ export default function DrawerAppBar(props: Props) {
                       display: location.pathname === "/registro" ? null : "none",
                     }}
                   >
-                    {item}
+                    {item.name}
                   </Button>
                 </Link>
               )

@@ -12,7 +12,7 @@ export type User = {
     gender: string;
     bus_required: boolean;
     allergies: string;
-    medical_condition: string;
+    medical_conditions: string;
 }
 
 // Get base path from environment variable
