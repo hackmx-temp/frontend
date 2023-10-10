@@ -10,7 +10,6 @@ const previousHacksImgs = [
         rows: 2,
         cols: 2,
     },
-    },
     {
         img: Image1,
         title: 'Hackathon 2',
@@ -33,7 +32,6 @@ const previousHacksImgs = [
         rows: 2,
         cols: 2,
     },
-    },
     {
         img: Image2,
         title: 'Hackathon 2',
@@ -52,5 +50,4 @@ const previousHacksImgs = [
     },
 ]
 
-export { previousHacksImgs }
-export { previousHacksImgs }
+export { previousHacksImgs } 
