@@ -1,4 +1,6 @@
 export interface CustomTextProps {
-    color?: string;
     content: string;
+    color?: string;
+    alignment?: string;
+    fontSize?: string;
 }

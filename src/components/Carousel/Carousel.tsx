@@ -80,7 +80,6 @@ const Carousel: React.FC<CarouselProps> = ({
 
   return (
     <CarouselContainer height={height} width={width}>
-      <CarouselTitle>Algunos de nuestros patrocinadores</CarouselTitle>
       <TopCarousel>
         <ArrowButton onClick={handlePrevClick} left>
           <IconButton>

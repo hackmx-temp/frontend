@@ -14,9 +14,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { HeaderLogoImg, HeaderLogoImgContainer } from "./styles";
-import HackMx from "../../Assets/hackmx-main.png";
+import HackMx from "../../assets/hackMX.png";
 import theme from "../../theme/theme";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface Props {
   /**
@@ -34,6 +34,7 @@ const navItems = [
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const location = useLocation();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -41,28 +42,43 @@ export default function DrawerAppBar(props: Props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      {/* <Typography variant="h6" sx={{ my: 2 }}> */}
-      <HeaderLogoImgContainer>
-        <HeaderLogoImg src={HackMx} size="small" />
-      </HeaderLogoImgContainer>
-      {/* </Typography> */}
+      <Link to="/">
+        <HeaderLogoImgContainer>
+          <HeaderLogoImg src={HackMx} size="small" />
+        </HeaderLogoImgContainer>
+      </Link>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item.name} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <Link to={item.route} style={{color: 'inherit', textDecoration: 'none'}}>
-                <ListItemText primary={item.name} />
-              </Link>
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {
+          location.pathname === "/registro" ? (
+            <Link 
+              to="/" 
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <ListItem disablePadding>
+                <ListItemButton sx={{ textAlign: "center" }}>
+                  <ListItemText primary="Inicio" />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          ) : (
+            <Link 
+              to="/registro"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <ListItem disablePadding>
+                <ListItemButton sx={{ textAlign: "center" }}>
+                  <ListItemText primary="Registro" />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          )
+        }
       </List>
-    </Box>
+    </Box >
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -79,7 +95,7 @@ export default function DrawerAppBar(props: Props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
-            <MenuIcon sx={{ color: theme.color.primary }} />
+            <MenuIcon sx={{ color: theme.color.mainBlue }} />
           </IconButton>
           <Typography
             variant="h6"
@@ -90,9 +106,11 @@ export default function DrawerAppBar(props: Props) {
               display: { xs: "none", sm: "block" },
             }}
           >
-            <HeaderLogoImgContainer>
-              <HeaderLogoImg src={HackMx} />
-            </HeaderLogoImgContainer>
+            <Link to="/">
+              <HeaderLogoImgContainer>
+                <HeaderLogoImg src={HackMx} />
+              </HeaderLogoImgContainer>
+            </Link>
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) =>
@@ -100,11 +118,12 @@ export default function DrawerAppBar(props: Props) {
                 <Link to="/registro" key={item.name}>
                   <Button
                     sx={{
-                      color: theme.color.primary,
+                      color: theme.color.mainBlue,
                       fontWeight: "600",
                       fontSize: "16px",
                       cursor: "pointer",
                       fontFamily: "Popins, sans-serif",
+                      display: location.pathname === "/" ? null : "none",
                     }}
                   >
                     {item.name}
@@ -115,11 +134,12 @@ export default function DrawerAppBar(props: Props) {
                   <Button
                     key={item.name}
                     sx={{
-                      color: theme.color.primary,
+                      color: theme.color.mainBlue,
                       fontWeight: "600",
                       fontSize: "16px",
                       cursor: "pointer",
                       fontFamily: "Popins, sans-serif",
+                      display: location.pathname === "/registro" ? null : "none",
                     }}
                   >
                     {item.name}

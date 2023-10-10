@@ -25,11 +25,18 @@ export const FooterUpperContainer = styled.div`
 
 export const FooterLogoImgContainer = styled.div`
   margin: 1em 0 1em 1em;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const FooterLogoImg = styled.img`
   width: 80px;
   height: auto;
+  &:hover {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0.8;
+  }
 `;
 
 export const FooterLinkWrapper = styled.div``;
