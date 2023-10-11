@@ -1,7 +1,7 @@
-import Image1 from '../../assets/previousHacks/hack4women.png'
-import Image2 from '../../assets/previousHacks/HackMX2.png'
-import Image3 from '../../assets/previousHacks/Quantum.png'
-import Image4 from '../../assets/previousHacks/HackMXCEM.png'
+import Image1 from '../../Assets/previousHacks/hack4women.png'
+import Image2 from '../../Assets/previousHacks/HackMX2.png'
+import Image3 from '../../Assets/previousHacks/Quantum.png'
+import Image4 from '../../Assets/previousHacks/HackMXCEM.png'
 
 const previousHacksImgs = [
     {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, IconButton, ImageList, ImageListItem, Stack, Typography } from "@mui/material"
+import { Box, IconButton, ImageList, ImageListItem, Stack } from "@mui/material"
 import { previousHacksImgs } from "./types"
 import theme from "../../theme/theme";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";

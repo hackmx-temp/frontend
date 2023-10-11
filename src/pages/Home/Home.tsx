@@ -1,4 +1,3 @@
-import { AboutUs } from "../../components/AboutUs";
 import { Mosaic } from "../../components/Mosaic";
 import { RegistryBanner } from "../../components/RegistryBanner";
 import AboutHackMx from "../../components/AboutHackMx/AboutHackMx";
