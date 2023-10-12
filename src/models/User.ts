@@ -16,7 +16,7 @@ export type User = {
 }
 
 // Get base path from environment variable
-const BASE_PATH = process.env.REACT_APP_BASE_PATH || 'http://localhost:5000';
+const BASE_PATH = process.env.BACK_PATH || 'http://localhost:5000';
 
 export async function createUser(user: User) {
     const json = JSON.stringify(user);
