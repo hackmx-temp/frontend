@@ -16,7 +16,7 @@ export type User = {
 }
 
 // Get base path from environment variable
-const BASE_PATH = 'http://ec2-52-206-244-191.compute-1.amazonaws.com';
+const BASE_PATH = 'api.hackmx.mx';
 
 export async function createUser(user: User) {
     const json = JSON.stringify(user);
