@@ -1,5 +1,5 @@
 import axios from "axios";
-required("dotenv").config();
+require("dotenv").config();
 
 export type User = {
     name: string;
