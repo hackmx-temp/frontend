@@ -19,7 +19,7 @@ import CopyrightIcon from "@mui/icons-material/Copyright";
 import HackMx from "../../Assets/hackmx-transparent.png";
 import React, { useEffect } from "react";
 import { Grid, IconButton } from "@mui/material";
-import { Facebook, Instagram } from "@mui/icons-material";
+import { Facebook, Instagram, LinkedIn } from "@mui/icons-material";
 import { useLocation, useNavigate } from "react-router-dom";
 // import { ROUTES } from "../../routes/constants";
 import { FooterProps } from "./types";
@@ -105,6 +105,7 @@ const Footer: React.FC<FooterProps> = ({ variant = "" }) => {
                       },
                     }}
                     style={{ marginTop: "10px" }}
+                    href="https://www.instagram.com/techackmx/"
                   >
                     <Instagram
                       sx={{ fontSize: 36, color: theme.color.grays.d1 }}
@@ -175,8 +176,27 @@ const Footer: React.FC<FooterProps> = ({ variant = "" }) => {
                         },
                       },
                     }}
+                    href="https://www.instagram.com/techackmx/"
                   >
                     <Instagram
+                      sx={{ fontSize: 30, color: theme.color.grays.d1 }}
+                    />
+                  </IconButton>
+                  <IconButton
+                    sx={{
+                      "&:hover": {
+                        color: theme.color.instagram,
+                        transition: "color 0.4s ease-in-out",
+                        opacity: 0.7,
+                        svg: {
+                          color: theme.color.instagram,
+                          transition: "color 0.4s ease-in-out",
+                        },
+                      },
+                    }}
+                    href="https://www.linkedin.com/company/hackmx/"
+                  >
+                    <LinkedIn
                       sx={{ fontSize: 30, color: theme.color.grays.d1 }}
                     />
                   </IconButton>

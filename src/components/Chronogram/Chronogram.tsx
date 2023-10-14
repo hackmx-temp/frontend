@@ -80,28 +80,28 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
 const Chronogram: React.FC = () => {
   const agendaItems = [
     {
-      day: "1",
-      month: "JAN",
+      day: "27",
+      month: "OCT",
       title: "Kick Off",
-      description: "Starting the hackathon with a bang!",
+      description: "Damos inicio al hackathon!",
     },
     {
-      day: "2",
-      month: "JAN",
+      day: "27",
+      month: "OCT",
       title: "Workshops",
-      description: "Various workshops on different technologies.",
+      description: "Varios workshops de diferentes tecnologías.",
     },
     {
-      day: "3",
-      month: "JAN",
+      day: "27-28",
+      month: "OCT",
       title: "Coding",
-      description: "Main coding day, get your hacks ready!",
+      description: "Tiempo de codificar y desarrollar tu proyecto.",
     },
     {
-      day: "4",
-      month: "JAN",
-      title: "Judging & Awards",
-      description: "Final presentations and award ceremony.",
+      day: "28",
+      month: "OCT",
+      title: "Premiación",
+      description: "Presentaciones finales y premiaciones.",
     },
   ];
 

@@ -3,6 +3,7 @@ import { Carousel } from '../Carousel'
 import awsLogo from "../../Assets/sponsors/aws.png";
 import dacompassLogo from "../../Assets/sponsors/dacompass.png";
 import liverpoolLogo from "../../Assets/sponsors/liverpool.png";
+import laModernaLogo from "../../Assets/sponsors/laModerna.png";
 import { Header, Wrapper } from './styles';
 
 const Sponsors = () => {
@@ -53,6 +54,11 @@ const Sponsors = () => {
                     {
                         src: liverpoolLogo,
                         alt: "Liverpool",
+                        client: "Client 1",
+                    },
+                    {
+                        src: laModernaLogo,
+                        alt: "La Moderna",
                         client: "Client 1",
                     },
                 ]}
