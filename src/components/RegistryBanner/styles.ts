@@ -38,7 +38,7 @@ export const StyledButton = styled.button`
     width: 200px;
     animation: ${fadeIn} 1.5s ease-in-out forwards;
     position: absolute;
-    top: 75%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
 

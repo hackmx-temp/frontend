@@ -5,7 +5,7 @@ import theme from '../../theme/theme'
 const RegistryBanner = () => {
     return (
         <BannerContainer>
-            <Image src="/HACK2023INICIO.png" alt="Tu imagen" className="imagen-home" />
+            <Image src="/HACK2023INICIO2.png" alt="Tu imagen" className="imagen-home" />
             <Link
                 to="/registro"
                 color={theme.color.white}
