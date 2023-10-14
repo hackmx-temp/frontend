@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import { Autocomplete, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
+import { Autocomplete, Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import { Checkbox } from '@mui/material';
 import './Registro.css';
@@ -71,7 +69,7 @@ function Registro() {
   const [countUsers, setCountUsers] = useState(0);
   const INTERVAL_MILISECONDS = 2000;
   const MATRICULA_REGEX = new RegExp('A0[0-9]{7}');
-  const EMAIL_REGEX = new RegExp('^[^\s@]+@[^\s@]+\.[^\s@]+');
+  const EMAIL_REGEX = new RegExp('^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$');
   const TELEPHONE_REGEX = new RegExp('^[0-9]{10}$');
 
   // Fetch count users every 30 seconds
@@ -82,7 +80,7 @@ function Registro() {
         if (response.data >= 200) {
           window.location.href = '/registro-cerrado';
         }
-      }).catch((error) => { 
+      }).catch((error) => {
         console.log("Cannot fetch count users");
       })
     }, INTERVAL_MILISECONDS);
@@ -137,7 +135,7 @@ function Registro() {
       errors.correo = 'Este campo es obligatorio';
     }
 
-    if(!EMAIL_REGEX.test(formData.correo)){
+    if (!EMAIL_REGEX.test(formData.correo)) {
       errors.correo = 'Correo inválido';
     }
 
@@ -145,7 +143,7 @@ function Registro() {
       errors.telefono = 'Este campo es obligatorio';
     }
 
-    if(!TELEPHONE_REGEX.test(formData.telefono)){
+    if (!TELEPHONE_REGEX.test(formData.telefono)) {
       errors.telefono = 'Teléfono inválido';
     }
 
@@ -461,74 +459,72 @@ function Registro() {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Card className="form-container">
-            <CardContent>
-              <Typography gutterBottom overflow='hidden' sx={{ typography: { sm: 'h2', xs: 'h5' }, textAlign: 'center', marginTop: '20px' }}>
-                <span style={{ fontStyle: 'italic', fontWeight: 'bold' }}>Regístrate</span>{' '}
-                <span style={{ fontWeight: 'bold' }}>para</span>{' '}
-                <span style={{ color: '#3B5998', fontWeight: 'bold' }}>HackMX 5</span>
-              </Typography>
-              <Typography variant="body1" color="textSecondary" component="p" sx={{ textAlign: 'center', marginBottom: '40px', fontWeight: 'bold', fontSize: '15px', color: 'black' }}>
-                Tus datos serán usados sin fines de lucro y de forma segura. El formulario cerrará cuando contemos con 200 hackers. ¡No te quedes fuera!
-              </Typography>
-              <Typography variant='h6' textAlign='center'>
-                Quedan {200 - countUsers} lugares
-              </Typography>
-              <form onSubmit={handleSubmit} >
-                <Grid container spacing={2} style={{ marginTop: '70px' }}>
-                  {formFields.map((field) => (
-                    <Grid
-                      key={field.id}
-                      xs={12}
-                      sm={6}
-                      item
-                      sx={{ paddingRight: '30px', marginBottom: '60px' }}
-                    >
-                      {field.hidden ? null : (
-                        renderFormField(field)
-                      )}
-
-                    </Grid>
-
-                  ))}
-                </Grid>
-                <div style={{ marginBottom: '50px', marginLeft: '5px' }}>
-                  <Checkbox
-                    checked={checked}
-                    onChange={() => setChecked(!checked)}
-                    color="primary"
-                    name="terminosYCondiciones"
-                  />
-                  <span style={{ fontSize: '12px' }}>
-                    He leido y acepto los términos de {' '}
-                    <a href="https://tec.mx/es/aviso-privacidad-participantes-expositores-panelistas-conferencistas-moderadores">
-                      AVISO DE PRIVACIDAD
-                    </a>
-                  </span>
-                </div>
-                {!checked &&
-                  <p style={{ color: '#b81414', fontSize: '12px', fontWeight: 'bold', display: 'flex', justifyContent: 'center', }}>Selecciona los términos y condiciones antes de enviarlo</p>
-                }
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '10%' }}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    className="custom-button"
-                    disabled={!checked}
+          <Box className="form-container">
+            <Typography gutterBottom overflow='hidden' sx={{ typography: { sm: 'h2', xs: 'h5' }, textAlign: 'center', marginTop: '20px' }}>
+              <span style={{ fontStyle: 'italic', fontWeight: 'bold' }}>Regístrate</span>{' '}
+              <span style={{ fontWeight: 'bold' }}>para</span>{' '}
+              <span style={{ color: '#3B5998', fontWeight: 'bold' }}>HackMX 5</span>
+            </Typography>
+            <Typography variant="body1" color="textSecondary" component="p" sx={{ textAlign: 'center', marginBottom: '40px', fontWeight: 'bold', fontSize: '15px', color: 'black' }}>
+              Tus datos serán usados sin fines de lucro y de forma segura. El formulario cerrará cuando contemos con 200 hackers. ¡No te quedes fuera!
+            </Typography>
+            <Typography variant='h6' textAlign='center'>
+              Quedan {200 - countUsers} lugares
+            </Typography>
+            <Box component='form' onSubmit={handleSubmit}>
+              <Grid container spacing={2} style={{ marginTop: '70px' }}>
+                {formFields.map((field) => (
+                  <Grid
+                    key={field.id}
+                    xs={12}
+                    sm={6}
+                    item
+                    sx={{ paddingRight: '30px', marginBottom: '60px' }}
                   >
-                    Enviar
-                  </Button>
+                    {field.hidden ? null : (
+                      renderFormField(field)
+                    )}
+
+                  </Grid>
+
+                ))}
+              </Grid>
+              <div style={{ marginBottom: '50px', marginLeft: '5px' }}>
+                <Checkbox
+                  checked={checked}
+                  onChange={() => setChecked(!checked)}
+                  color="primary"
+                  name="terminosYCondiciones"
+                />
+                <span style={{ fontSize: '12px' }}>
+                  He leido y acepto los términos de {' '}
+                  <a href="https://tec.mx/es/aviso-privacidad-participantes-expositores-panelistas-conferencistas-moderadores">
+                    AVISO DE PRIVACIDAD
+                  </a>
+                </span>
+              </div>
+              {!checked &&
+                <p style={{ color: '#b81414', fontSize: '12px', fontWeight: 'bold', display: 'flex', justifyContent: 'center', }}>Selecciona los términos y condiciones antes de enviarlo</p>
+              }
+              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '10%' }}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  className="custom-button"
+                  disabled={!checked}
+                >
+                  Enviar
+                </Button>
+              </div>
+
+              {showError && (
+                <div className="error-message" style={{ color: 'black' }}>
+                  Debes aceptar los Términos y Condiciones para continuar.
                 </div>
+              )}
 
-                {showError && (
-                  <div className="error-message" style={{ color: 'black' }}>
-                    Debes aceptar los Términos y Condiciones para continuar.
-                  </div>
-                )}
-
-              </form>
-            </CardContent>
-          </Card>
+            </Box>
+          </Box>
         </Grid>
       </Grid>
       {dialogStatus ? dialog() : null}
