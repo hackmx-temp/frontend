@@ -500,7 +500,7 @@ function Registro() {
                     name="terminosYCondiciones"
                   />
                   <span style={{ fontSize: '12px' }}>
-                    He leido y aceptado los términos de {' '}
+                    He leido y acepto los términos de {' '}
                     <a href="https://tec.mx/es/aviso-privacidad-participantes-expositores-panelistas-conferencistas-moderadores">
                       AVISO DE PRIVACIDAD
                     </a>
