@@ -71,17 +71,20 @@ function Registro() {
   const [countUsers, setCountUsers] = useState(0);
   const INTERVAL_MILISECONDS = 2000;
   const MATRICULA_REGEX = new RegExp('A0[0-9]{7}');
+  const EMAIL_REGEX = new RegExp('^[^\s@]+@[^\s@]+\.[^\s@]+');
+  const TELEPHONE_REGEX = new RegExp('^[0-9]{10}$');
 
   // Fetch count users every 30 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       getCount().then((response) => {
         setCountUsers(response.data.count);
-        console.log(typeof response.data.count)
         if (response.data >= 200) {
           window.location.href = '/registro-cerrado';
         }
-      }).catch((error) => { })
+      }).catch((error) => { 
+        console.log("Cannot fetch count users");
+      })
     }, INTERVAL_MILISECONDS);
     return () => clearInterval(interval);
   }, []);
@@ -134,8 +137,16 @@ function Registro() {
       errors.correo = 'Este campo es obligatorio';
     }
 
+    if(!EMAIL_REGEX.test(formData.correo)){
+      errors.correo = 'Correo inválido';
+    }
+
     if (!formData.telefono) {
       errors.telefono = 'Este campo es obligatorio';
+    }
+
+    if(!TELEPHONE_REGEX.test(formData.telefono)){
+      errors.telefono = 'Teléfono inválido';
     }
 
     if (!formData.genero) {
@@ -145,15 +156,6 @@ function Registro() {
     if (!formData.necesitaAutobus1) {
       errors.necesitaAutobus1 = 'Este campo es obligatorio';
     }
-
-    if (!formData.situacionmedica) {
-      errors.situacionmedica = 'Este campo es obligatorio';
-    }
-
-    if (!formData.alergias) {
-      errors.alergias = 'Este campo es obligatorio';
-    }
-
 
     return errors;
   }
@@ -217,7 +219,7 @@ function Registro() {
       }).catch((error) => {
         if (error.response) {
           setErrorDialog(true);
-          setMessageDialog(error.message);
+          setMessageDialog(error.response.data.message);
         }
       });
       setDialogStatus(true);
@@ -281,6 +283,7 @@ function Registro() {
           onChange={(event, newValue) =>
             setFormData({ ...formData, [field.id]: newValue })
           }
+          onInputChange={(event, newInputValue) => setFormData({ ...formData, [field.id]: newInputValue })}
           id={field.id}
           options={genderOptions}
           sx={{
@@ -310,6 +313,7 @@ function Registro() {
               required
               {...params}
               label={field.label}
+              error={Boolean(errors[field.id])}
               helperText={errors[field.id] || helperGenderText} />}
         />
       )
@@ -470,7 +474,7 @@ function Registro() {
               <Typography variant='h6' textAlign='center'>
                 Quedan {200 - countUsers} lugares
               </Typography>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} >
                 <Grid container spacing={2} style={{ marginTop: '70px' }}>
                   {formFields.map((field) => (
                     <Grid
@@ -502,7 +506,7 @@ function Registro() {
                     </a>
                   </span>
                 </div>
-                {checked ? null :
+                {!checked &&
                   <p style={{ color: '#b81414', fontSize: '12px', fontWeight: 'bold', display: 'flex', justifyContent: 'center', }}>Selecciona los términos y condiciones antes de enviarlo</p>
                 }
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '10%' }}>
