@@ -77,6 +77,7 @@ function Registro() {
     const interval = setInterval(() => {
       getCount().then((response) => {
         setCountUsers(response.data.count);
+        console.log(typeof response.data.count)
         if (response.data >= 200) {
           window.location.href = '/registro-cerrado';
         }

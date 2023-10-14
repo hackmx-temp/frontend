@@ -16,11 +16,11 @@ export type User = {
 }
 
 // Get base path from environment variable
-const BASE_PATH = 'api.hackmx.mx';
+const BACK_HACK = 'https://api.hackmx.mx';
 
 export async function createUser(user: User) {
     const json = JSON.stringify(user);
-    const url = `${BASE_PATH}/hackMX/user`;
+    const url = `${BACK_HACK}/hackMX/user`;
     return await axios.post(url, json, {
         headers: {
             'Content-Type': 'application/json'
@@ -29,6 +29,6 @@ export async function createUser(user: User) {
 }
 
 export async function getCount() {
-    const url = `${BASE_PATH}/hackMX/user/count`;
+    const url = `${BACK_HACK}/hackMX/user/count`;
     return await axios.get(url);
 }
