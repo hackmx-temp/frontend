@@ -15,4 +15,5 @@ export interface Item {
 
 export interface TableViewProps {
   items: Item[];
+  rowsPerPage?: number; // Number of rows to display per page. Default is 10.
 }
