@@ -212,8 +212,11 @@ function Registro() {
         } else if (id.length === 2) {
           id = '0' + id;
         }
+        const MENSAJE_EXITOSO = "¡Ya eres parte del HackMX! <br>Tu ID es: " + id;
+        const LINK_WHATSAPP = "<br>Unete al grupo de <a target='_blank' href='https://goo.su/xJUy'>whatsapp</a><br>¡Te esperamos este 27 de octubre!";
+        const SELECCION_EQUIPOS = "<br>Espera la fecha para la formación de equipos";
         setErrorDialog(false);
-        setMessageDialog('Tu ID es: ' + id);
+        setMessageDialog(MENSAJE_EXITOSO + LINK_WHATSAPP + SELECCION_EQUIPOS);
       }).catch((error) => {
         if (error.response) {
           setErrorDialog(true);
@@ -428,7 +431,9 @@ function Registro() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText color="textSecondary" sx={{ textAlign: 'center' }}>
-            {messageDialog}
+            {errorDialog ?
+              messageDialog :
+              <div dangerouslySetInnerHTML={{ __html: messageDialog }} />}
           </DialogContentText>
         </DialogContent>
         <DialogActions style={{ justifyContent: 'center' }}>
@@ -497,7 +502,7 @@ function Registro() {
                   name="terminosYCondiciones"
                 />
                 <span style={{ fontSize: '12px' }}>
-                  He leido y acepto los términos de {' '}
+                  He leido y acepto los términos del {' '}
                   <a href="https://tec.mx/es/aviso-privacidad-participantes-expositores-panelistas-conferencistas-moderadores">
                     AVISO DE PRIVACIDAD
                   </a>
@@ -527,7 +532,7 @@ function Registro() {
           </Box>
         </Grid>
       </Grid>
-      {dialogStatus ? dialog() : null}
+      {dialog()}
     </div>
   );
 }
