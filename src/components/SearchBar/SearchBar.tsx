@@ -10,6 +10,8 @@ import { Clear, Search } from "@mui/icons-material";
 import { TextField, InputAdornment, IconButton, Divider } from "@mui/material";
 import { SearchBarProp } from "./types";
 import { Button } from "@mui/material";
+import theme from "../../theme/theme";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar: React.FC<SearchBarProp> = ({
   label,
@@ -28,6 +30,11 @@ const SearchBar: React.FC<SearchBarProp> = ({
   };
 
   const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
+
+  const handleCreateTeam = () => {
+    navigate(`/usuario/equipos/crear`);
+  };
 
   return (
     <>
@@ -38,7 +45,24 @@ const SearchBar: React.FC<SearchBarProp> = ({
               {title}
               {!!btnText && (
                 <ButtonContainer>
-                  <Button variant="contained" sx={{ textTransform: "none" }}>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      width: "150px",
+                      height: "50px",
+                      borderRadius: "10px",
+                      fontSize: "16px",
+                      fontWeight: "500",
+                      backgroundColor: theme.color.mainBlue,
+                      color: theme.color.white,
+                      textTransform: "none",
+                      "&:hover": {
+                        backgroundColor: "#114880",
+                      },
+                    }}
+                    onClick={() => { handleCreateTeam() }}
+                  // disabled={loadingRequest}
+                  >
                     {btnText}
                   </Button>
                 </ButtonContainer>

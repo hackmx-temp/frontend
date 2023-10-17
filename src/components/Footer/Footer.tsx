@@ -16,7 +16,7 @@ import {
 } from "./styles";
 
 import CopyrightIcon from "@mui/icons-material/Copyright";
-import HackMx from "../../Assets/hackmx-transparent.png";
+import HackMx from "../../assets/hackmx-main.png";
 import React, { useEffect } from "react";
 import { Grid, IconButton } from "@mui/material";
 import { Facebook, Instagram, LinkedIn } from "@mui/icons-material";

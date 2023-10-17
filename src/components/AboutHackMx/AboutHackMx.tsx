@@ -3,9 +3,9 @@ import { CustomText } from '../CustomText'
 import theme from '../../theme/theme'
 import { BasicContainer, CardsWrapper, Header, SmallHeader, Wrapper } from './styles'
 import { Card } from '../Card'
-import hackathon from '../../Assets/cardImages/hackathon.png'
-import goal from '../../Assets/cardImages/goal.png'
-import idea from '../../Assets/cardImages/idea.png'
+import hackathon from '../../assets/cardImages/hackathon.png'
+import goal from '../../assets/cardImages/goal.png'
+import idea from '../../assets/cardImages/idea.png'
 
 const AboutHackMx = () => {
   const [isWelcomeVisible, setIsWelcomeVisible] = useState(false);

@@ -1,9 +1,10 @@
-import Home from "../pages/Home/Home";
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 import PublicRouter from "./PublicRouter";
-import Registro from "../pages/Register/Registro";
+import { Home } from "../pages/Home";
+import { Registro } from "../pages/Registro";
 import PrivateRouter from "./PrivateRouter";
-import Teams from "../pages/Teams/Teams";
+import { Teams } from "../pages/Teams";
+import { CreateTeam } from "../pages/CreateTeam";
 
 const routes: RouteObject[] = [
   {
@@ -34,6 +35,10 @@ const routes: RouteObject[] = [
       {
         path: "/usuario/equipos",
         element: <Teams />,
+      },
+      {
+        path: "/usuario/equipos/crear",
+        element: <CreateTeam />,
       },
     ],
   },
