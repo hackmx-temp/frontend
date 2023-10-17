@@ -5,10 +5,10 @@ import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 
-import "./ForgotPassword.css"; // You can style this component by defining your CSS in this file
+import "./ForgotPassword.css"; // Define tus estilos en este archivo
 import { Typography } from "@mui/material";
 
-function ForgotPassword () {
+function ForgotPassword() {
   return (
     <Grid container spacing={2} className="Registro">
       <Grid
@@ -30,7 +30,7 @@ function ForgotPassword () {
       </Grid>
       <Grid item xs={12} sm={6}>
         <Box className="form-container" sx={{ textAlign: "center", height: "840px" }}>
-          {/* Right column with the login form */}
+          {/* Columna derecha con el formulario de inicio de sesión */}
           <div className="form-wrapper">
             <Typography
               gutterBottom
@@ -42,77 +42,77 @@ function ForgotPassword () {
                 marginBottom: "5rem",
               }}
             >
-              <span style={{ fontStyle: "italic", fontWeight: "bold" }}>
-                Iniciar Sesión
-              </span>{" "}
-              <span style={{ color: "#3B5998", fontWeight: "bold" }}>
+              <Typography
+                component="div"
+                sx={{
+                  fontSize: "45px",
+                  fontStyle: "italic",
+                  fontWeight: "bold",
+                  marginBottom: '10px',
+                }}
+              >
+                Olvidaste tu contraseña
+              </Typography>{" "}
+              <Typography
+                component="div"
+                sx={{
+                  color: "#3B5998",
+                  fontWeight: "bold",
+                  marginBottom: '10px',
+                  fontSize: '45px',
+                }}
+              >
                 Hackfest 2.0
-              </span>
+              </Typography>
+              <Typography
+                variant="body2"
+                component="p"
+                style={{
+                  padding: '10px 40px 20px 60px',
+                  fontSize: '16px',
+                  marginTop: '30px',
+                  textAlign: "left",
+                }}
+              >
+                Podemos ayudarte a cambiar tu contraseña mediante la dirección de correo electrónico
+              </Typography>
             </Typography>
             <form>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Correo"
-                name="email"
-                sx={{
-                  maxWidth: "500px",
-                  "& .MuiInputLabel-root": {
-                    color: "gray",
-                  },
-                  "& .MuiOutlinedInput-root": {
-                    backgroundColor: "none",
-                    color: "black",
-                    height: "45px",
-                    "& fieldset": {
-                      borderColor: "orange",
-                      borderWidth: "4px",
-                      borderRadius: "50px",
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <span style={{ fontSize: '18px', marginRight: '10px', padding: '30px 40px 20px 30px' }}>Correo</span>
+
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label=""
+                  name="email"
+                  sx={{
+                    maxWidth: "500px",
+                    "& .MuiInputLabel-root": {
+                      color: "gray",
                     },
-                    "&:hover fieldset": {
-                      borderColor: "orange",
+                    "& .MuiOutlinedInput-root": {
+                      backgroundColor: "none",
+                      color: "black",
+                      height: "45px",
+                      "& fieldset": {
+                        borderColor: "orange",
+                        borderWidth: "4px",
+                        borderRadius: "50px",
+                      },
+                      "&:hover fieldset": {
+                        borderColor: "orange",
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "orange",
+                      },
                     },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "orange",
-                    },
-                  },
-                }}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Contraseña"
-                type="password"
-                id="password"
-                sx={{
-                  maxWidth: "500px",
-                  "& .MuiInputLabel-root": {
-                    color: "gray",
-                  },
-                  "& .MuiOutlinedInput-root": {
-                    backgroundColor: "none",
-                    color: "black",
-                    height: "45px",
-                    "& fieldset": {
-                      borderColor: "orange",
-                      borderWidth: "4px",
-                      borderRadius: "50px",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "orange",
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "orange",
-                    },
-                  },
-                }}
-              />
+                  }}
+                />
+              </div>
               <div
                 style={{
                   display: "flex",
@@ -126,29 +126,14 @@ function ForgotPassword () {
                   variant="contained"
                   className="custom-button"
                 >
-                  Entrar
+                  Recuperar
                 </Button>
               </div>
             </form>
-            <Box sx={{ fontFamily: "Poppins", marginBottom: "2rem" }}>
-              <p style={{ margin: 0 }}>
-                ¿Has olvidado tus datos de inicio de sesión?
-              </p>
-              <Link
-                to="/forgot-password"
-                className="forgot-password-link"
-                style={{
-                  fontWeight: "bold",
-                  textDecorationLine: "none",
-                  color: "orange ",
-                }}
-              >
-                Obtén ayuda
-              </Link>
-            </Box>
+            <hr style={{ borderColor: '#9DB4D0', borderWidth: '1px', width: '80%', margin: '10px auto 40px auto' }} />
             <Box sx={{ fontFamily: "Poppins" }}>
               <span style={{ marginRight: "1rem" }}>
-                ¿Aun no tienes cuenta?
+                ¿Aún no tienes cuenta?
               </span>
               <Link
                 to="/registro"
@@ -156,7 +141,7 @@ function ForgotPassword () {
                 style={{
                   fontWeight: "bold",
                   textDecorationLine: "none",
-                  color: "orange ",
+                  color: "orange",
                 }}
               >
                 Regístrate
