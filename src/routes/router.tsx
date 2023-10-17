@@ -2,6 +2,7 @@ import Home from "../pages/Home/Home";
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 import PublicRouter from "./PublicRouter";
 import Registro from "../pages/Register/Registro";
+import SignIn from "../pages/SignIn/SignIn";
 
 
 const routes: RouteObject[] = [
@@ -18,6 +19,11 @@ const routes: RouteObject[] = [
       {
         path: "/registro",
         element: <Registro />,
+      },
+
+      {
+        path: "/login",
+        element: <SignIn />,
       },
     ],
   },
