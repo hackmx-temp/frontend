@@ -6,7 +6,7 @@ import { Autocomplete, Box, Dialog, DialogActions, DialogContent, DialogContentT
 import MenuItem from '@mui/material/MenuItem';
 import { Checkbox } from '@mui/material';
 import './Registro.css';
-import { User, createUser, getCount } from '../../models/User';
+import { User, createUser } from '../../models/User';
 import { Link } from 'react-router-dom';
 
 interface FormData {
@@ -66,27 +66,10 @@ function Registro() {
   const [dialogStatus, setDialogStatus] = useState(false);
   const [errorDialog, setErrorDialog] = useState(false);
   const [messageDialog, setMessageDialog] = useState('');
-  const [countUsers, setCountUsers] = useState(0);
   const INTERVAL_MILISECONDS = 2000;
   const MATRICULA_REGEX = new RegExp('A0[0-9]{7}');
   const EMAIL_REGEX = new RegExp('^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$');
   const TELEPHONE_REGEX = new RegExp('^[0-9]{10}$');
-  const MAX_PARTICIPANTS = 250;
-
-  // Fetch count users every 30 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      getCount().then((response) => {
-        setCountUsers(response.data.count);
-        if (response.data >= MAX_PARTICIPANTS) {
-          window.location.href = '/registro-cerrado';
-        }
-      }).catch((error) => {
-        console.log("Cannot fetch count users");
-      })
-    }, INTERVAL_MILISECONDS);
-    return () => clearInterval(interval);
-  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -472,10 +455,7 @@ function Registro() {
               <span style={{ color: '#3B5998', fontWeight: 'bold' }}>HackMX 5</span>
             </Typography>
             <Typography variant="body1" color="textSecondary" component="p" sx={{ textAlign: 'center', marginBottom: '40px', fontWeight: 'bold', fontSize: '15px', color: 'black' }}>
-              Tus datos serán usados sin fines de lucro y de forma segura. El formulario cerrará cuando contemos con {MAX_PARTICIPANTS} hackers. ¡No te quedes fuera!
-            </Typography>
-            <Typography variant='h6' textAlign='center'>
-              Quedan {MAX_PARTICIPANTS - countUsers} lugares
+              Tus datos serán usados sin fines de lucro y de forma segura. El formulario cerrará cuando contemos con 300 hackers. ¡No te quedes fuera!
             </Typography>
             <Box component='form' onSubmit={handleSubmit}>
               <Grid container spacing={2} style={{ marginTop: '70px' }}>
