@@ -1,11 +1,19 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { AddParticipantWrapper, CustomInputLabel, HeaderWrapper, PageTitle, PageWrapper } from "./styles";
 import theme from "../../theme/theme";
-import { TeamMembersTable } from "../../components/TeamMembersTable";
+import { TeamTable } from "../../components/TeamTable";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-const teamColumns = ["#", "Nombre del participante", "Correo", "Campus", "Semestre"];
+
+const teamTableCols = [
+    { id: 'id', label: 'Matrícula' },
+    { id: 'name', label: 'Nombre' },
+    { id: 'email', label: 'Email' },
+    { id: 'campus', label: 'Campus' },
+    { id: 'semester', label: 'Semestre' },
+]
+
 const teamMembers = [
     { id: "A0000000", name: "Clara", email: "A0000000@tec.mx", campus: "CCM", semester: "7" },
     { id: "A0000001", name: "Sofía", email: "A0000001@tec.mx", campus: "CCM", semester: "7" },
@@ -48,11 +56,11 @@ const CreateTeam = () => {
                         borderRadius: "14px",
                     },
                 }}
-            // value={resourceName}
-            // onChange={handleResourceName}
-            // onBlur={handleResourceNameBlur}
-            // error={resourceNameError}
-            // helperText={resourceNameError ? 'Este campo es obligatorio' : ''}
+            // value={}
+            // onChange={}
+            // onBlur={}
+            // error={}
+            // helperText={}
             />
             <CustomInputLabel>Invita participantes al equipo</CustomInputLabel>
             <AddParticipantWrapper>
@@ -60,15 +68,15 @@ const CreateTeam = () => {
                     fullWidth
                     required
                     sx={{ width: '100%' }}
-                // error={motorTypeError}
+                // error={}
                 >
                     <InputLabel id='team-member'>Nombre del participante</InputLabel>
                     <Select
                         labelId='team-member'
                         label="Nombre del participante *"
-                        // onChange={handleType}
-                        // value={motorType}
-                        // onBlur={handleTypeBlur}
+                        // onChange={}
+                        // value={}
+                        // onBlur={}
                         sx={{ borderRadius: '14px' }}
                     >
                         <MenuItem value="A0000000">Sofía</MenuItem>
@@ -76,7 +84,6 @@ const CreateTeam = () => {
                         <MenuItem value="A0000002">Emiliano</MenuItem>
                         <MenuItem value="A0000003">Alfonso</MenuItem>
                     </Select>
-                    {/* {motorTypeError && <FormHelperText>Este campo es obligatorio</FormHelperText>} */}
                 </FormControl>
                 <Button
                     variant="contained"
@@ -92,15 +99,15 @@ const CreateTeam = () => {
                             backgroundColor: "#114880",
                         },
                     }}
-                // onClick={NewReservation}
-                // disabled={loadingRequest}
+                // onClick={}
+                // disabled={}
                 >
                     Invitar
                 </Button>
             </AddParticipantWrapper>
-            <TeamMembersTable
-                columnNames={teamColumns}
-                data={teamMembers}
+            <TeamTable
+                columns={teamTableCols}
+                rows={teamMembers}
             />
         </PageWrapper>
     );

@@ -5,6 +5,8 @@ import { Registro } from "../pages/Registro";
 import PrivateRouter from "./PrivateRouter";
 import { Teams } from "../pages/Teams";
 import { CreateTeam } from "../pages/CreateTeam";
+import { MyTeam } from "../pages/MyTeam";
+import { EditTeam } from "../pages/EditTeam";
 
 const routes: RouteObject[] = [
   {
@@ -39,6 +41,10 @@ const routes: RouteObject[] = [
       {
         path: "/usuario/equipos/crear",
         element: <CreateTeam />,
+      },
+      {
+        path: "/usuario/miequipo",
+        element: <MyTeam />,
       },
     ],
   },
