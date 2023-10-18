@@ -455,7 +455,7 @@ function Registro() {
               <span style={{ color: '#3B5998', fontWeight: 'bold' }}>HackMX 5</span>
             </Typography>
             <Typography variant="body1" color="textSecondary" component="p" sx={{ textAlign: 'center', marginBottom: '40px', fontWeight: 'bold', fontSize: '15px', color: 'black' }}>
-              Tus datos serán usados sin fines de lucro y de forma segura. El formulario cerrará cuando contemos con 300 hackers. ¡No te quedes fuera!
+              Tus datos serán usados sin fines de lucro y de forma segura. El formulario cerrará cuando contemos con 200 hackers. ¡No te quedes fuera!
             </Typography>
             <Box component='form' onSubmit={handleSubmit}>
               <Grid container spacing={2} style={{ marginTop: '70px' }}>
