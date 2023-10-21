@@ -66,29 +66,6 @@ const routes: RouteObject[] = [
       },
     ],
   },
-  {
-    // Private routes
-    path: "/usuario",
-    element: <PrivateRouter />,
-    children: [
-      {
-        path: "/usuario",
-        element: <Home />,
-      },
-      {
-        path: "/usuario/equipos",
-        element: <Teams />,
-      },
-      {
-        path: "/usuario/equipos/crear",
-        element: <CreateTeam />,
-      },
-      {
-        path: "/usuario/miequipo",
-        element: <MyTeam />,
-      },
-    ],
-  },
 ];
 
 export const router = createBrowserRouter(routes);
