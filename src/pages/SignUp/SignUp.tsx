@@ -5,10 +5,10 @@ import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 
-import "./SignIn.css"; // You can style this component by defining your CSS in this file
+import "./SignUp.css"; // You can style this component by defining your CSS in this file
 import { Typography } from "@mui/material";
 
-function SignIn() {
+function SignUp() {
   return (
     <Grid container spacing={2} className="Registro">
       <Grid
@@ -43,7 +43,7 @@ function SignIn() {
               }}
             >
               <span style={{ fontStyle: "italic", fontWeight: "bold" }}>
-                Sign In for
+                Sign Up for
               </span>{" "}
               <span style={{ color: "#3B5998", fontWeight: "bold" }}>
                 Hackfest 2.0
@@ -169,4 +169,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SignUp;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import theme from "../../theme/theme";
 
 export const FooterWrapper = styled.div`
-  background-color: #1e1f26;
+  background-color: #f9f9f9;
   width: 100%;
   padding: 2em 0;
   margin-bottom: 0px;
