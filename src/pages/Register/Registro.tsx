@@ -71,13 +71,14 @@ function Registro() {
   const MATRICULA_REGEX = new RegExp('A0[0-9]{7}');
   const EMAIL_REGEX = new RegExp('^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$');
   const TELEPHONE_REGEX = new RegExp('^[0-9]{10}$');
+  const MAX_PARTICIPANTS = 250;
 
   // Fetch count users every 30 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       getCount().then((response) => {
         setCountUsers(response.data.count);
-        if (response.data >= 200) {
+        if (response.data >= MAX_PARTICIPANTS) {
           window.location.href = '/registro-cerrado';
         }
       }).catch((error) => {
@@ -471,10 +472,10 @@ function Registro() {
               <span style={{ color: '#3B5998', fontWeight: 'bold' }}>HackMX 5</span>
             </Typography>
             <Typography variant="body1" color="textSecondary" component="p" sx={{ textAlign: 'center', marginBottom: '40px', fontWeight: 'bold', fontSize: '15px', color: 'black' }}>
-              Tus datos serán usados sin fines de lucro y de forma segura. El formulario cerrará cuando contemos con 200 hackers. ¡No te quedes fuera!
+              Tus datos serán usados sin fines de lucro y de forma segura. El formulario cerrará cuando contemos con {MAX_PARTICIPANTS} hackers. ¡No te quedes fuera!
             </Typography>
             <Typography variant='h6' textAlign='center'>
-              Quedan {200 - countUsers} lugares
+              Quedan {MAX_PARTICIPANTS - countUsers} lugares
             </Typography>
             <Box component='form' onSubmit={handleSubmit}>
               <Grid container spacing={2} style={{ marginTop: '70px' }}>
