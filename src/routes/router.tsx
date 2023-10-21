@@ -1,12 +1,15 @@
-import Home from "../pages/Home/Home";
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 import PublicRouter from "./PublicRouter";
-import Registro from "../pages/Register/Registro";
+import { Home } from "../pages/Home";
+import { Registro } from "../pages/Registro";
 import PrivateRouter from "./PrivateRouter";
-import Teams from "../pages/Teams/Teams"; import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
+import Teams from "../pages/Teams/Teams";
+import { CreateTeam } from "../pages/CreateTeam";
+import { MyTeam } from "../pages/MyTeam";
+import { EditTeam } from "../pages/EditTeam";
+import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
-
 
 const routes: RouteObject[] = [
   {
@@ -53,6 +56,14 @@ const routes: RouteObject[] = [
         path: "/usuario/equipos",
         element: <Teams />,
       },
+      {
+        path: "/usuario/equipos/crear",
+        element: <CreateTeam />,
+      },
+      {
+        path: "/usuario/miequipo",
+        element: <MyTeam />,
+      },
     ],
   },
   {
@@ -67,6 +78,14 @@ const routes: RouteObject[] = [
       {
         path: "/usuario/equipos",
         element: <Teams />,
+      },
+      {
+        path: "/usuario/equipos/crear",
+        element: <CreateTeam />,
+      },
+      {
+        path: "/usuario/miequipo",
+        element: <MyTeam />,
       },
     ],
   },
