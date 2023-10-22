@@ -15,8 +15,13 @@ export type User = {
     medical_conditions: string;
 }
 
+export type RegisteredUser = {
+    email: string;
+    password: string;
+}
+
 // Get base path from environment variable
-const BACK_HACK = 'https://api.hackmx.mx';
+const BACK_HACK = 'http://localhost:8000/hackMX';
 
 export async function createUser(user: User) {
     const json = JSON.stringify(user);
@@ -31,4 +36,14 @@ export async function createUser(user: User) {
 export async function getCount() {
     const url = `${BACK_HACK}/hackMX/user/count`;
     return await axios.get(url);
+}
+
+export async function signUpUser(user: RegisteredUser) {
+    const json = JSON.stringify(user);
+    const url = `${BACK_HACK}/auth/signup`;
+    return await axios.post(url, json, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
 }
