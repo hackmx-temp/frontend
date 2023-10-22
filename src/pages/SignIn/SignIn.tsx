@@ -148,7 +148,7 @@ function SignIn() {
             </Box>
             <Box sx={{ fontFamily: "Poppins" }}>
               <span style={{ marginRight: "1rem" }}>
-                ¿Aun no tienes cuenta?
+                ¿Aún no tienes cuenta?
               </span>
               <Link
                 to="/registro"

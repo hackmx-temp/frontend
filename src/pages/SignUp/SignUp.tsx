@@ -4,27 +4,37 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
+import {
+  Typography,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from "@mui/material";
 
 import "./SignUp.css"; // You can style this component by defining your CSS in this file
-import { Typography } from "@mui/material";
+
 import { RegisteredUser, signUpUser } from "../../models/User";
 
 function SignUp() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
-  const [errorDialog, setErrorDialog] = useState(false);
-  const [messageDialog, setMessageDialog] = useState("");
-  const [dialogStatus, setDialogStatus] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = async (event: { preventDefault: () => void }) => {
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
 
     const user = {
       email: formData.email,
       password: formData.password,
+      confirmPassword: formData.confirmPassword,
     };
 
     signUpUser(user)
@@ -38,41 +48,27 @@ function SignUp() {
           "<br>Unete al grupo de <a target='_blank' href='https://goo.su/xJUy'>whatsapp</a><br>¡Te esperamos este 27 de octubre!";
         const SELECCION_EQUIPOS =
           "<br>Espera la fecha para la formación de equipos";
-        setErrorDialog(false);
-        setMessageDialog(MENSAJE_EXITOSO + LINK_WHATSAPP + SELECCION_EQUIPOS);
+        setOpenDialog(true);
       })
       .catch((error) => {
         if (error.response) {
-          // Handle server-side errors
-          if (error.response.status === 500) {
-            // Display the validation error message to the user
-            setErrorDialog(true);
-            setMessageDialog(
-              "Validation error: " + error.response.data.message
-            );
-            console.log(user)
-          } else {
-            // Handle other server errors
-            setErrorDialog(true);
-            setMessageDialog(
-              "An error occurred while processing your request."
-            );
-          }
+          alert("Validation error: " + error.response.data.message);
         } else {
-          // Handle network or other errors
-          setErrorDialog(true);
-          setMessageDialog("An error occurred. Please try again later.");
+          alert("An error occurred while processing your request.");
         }
       });
-    setDialogStatus(true);
   };
 
-  const handleInputChange = (e: { target: { name: any; value: any } }) => {
+  const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
   };
 
   return (
@@ -99,7 +95,6 @@ function SignUp() {
           className="form-container"
           sx={{ textAlign: "center", height: "840px" }}
         >
-          {/* Right column with the login form */}
           <div className="form-wrapper">
             <Typography
               gutterBottom
@@ -160,7 +155,6 @@ function SignUp() {
                 name="password"
                 label="Contraseña"
                 type="password"
-                id="password"
                 value={formData.password}
                 onChange={handleInputChange}
                 sx={{
@@ -186,6 +180,50 @@ function SignUp() {
                   },
                 }}
               />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="confirmPassword"
+                label="Confirmar Contraseña"
+                type="password"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                sx={{
+                  maxWidth: "500px",
+                  "& .MuiInputLabel-root": {
+                    color: "gray",
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    backgroundColor: "none",
+                    color: "black",
+                    height: "45px",
+                    "& fieldset": {
+                      borderColor: "orange",
+                      borderWidth: "4px",
+                      borderRadius: "50px",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "orange",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "orange",
+                    },
+                  },
+                }}
+              />
+              {error && (
+                <div
+                  style={{
+                    color: "red",
+                    textAlign: "center",
+                    marginTop: "10px",
+                  }}
+                >
+                  {error}
+                </div>
+              )}
               <div
                 style={{
                   display: "flex",
@@ -221,7 +259,7 @@ function SignUp() {
             </Box>
             <Box sx={{ fontFamily: "Poppins" }}>
               <span style={{ marginRight: "1rem" }}>
-                ¿Aun no tienes cuenta?
+                ¿Aún no tienes cuenta?
               </span>
               <Link
                 to="/registro"
@@ -238,6 +276,20 @@ function SignUp() {
           </div>
         </Box>
       </Grid>
+
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>Registration Successful</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            You have successfully registered! Your ID is: [Insert ID here]
+          </DialogContentText>
+          <DialogActions>
+            <Button onClick={handleCloseDialog} color="primary">
+              Close
+            </Button>
+          </DialogActions>
+        </DialogContent>
+      </Dialog>
     </Grid>
   );
 }
