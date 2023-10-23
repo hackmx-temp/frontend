@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -8,9 +8,60 @@ import Box from "@mui/material/Box";
 import "./SignIn.css"; // You can style this component by defining your CSS in this file
 import { Typography } from "@mui/material";
 
+import { LogedUser, signInUser } from "../../models/User";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function SignIn() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [error, setError] = useState(null);
+
+  const handleSuccess = (token: string) => {
+    // Save the token to local storage for maintaining the login session
+    localStorage.setItem("token", token);
+  };
+
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+
+    const user = {
+      email: formData.email,
+      password: formData.password,
+    };
+
+    signInUser(user)
+      .then((response) => {
+        const user = response.data;
+        var id = String(user.id);
+        console.log(response.data);
+        const token = response.data; // Assuming your response has a token
+        console.log(token);
+        toast.success("Inicio de sesión exitoso");
+        handleSuccess(token); // Handle the success response
+
+        return;
+      })
+      .catch((error) => {
+        toast.error("Credenciales Inválidas"); // Display error message
+      });
+  };
+
+  const handleInputChange = (e: { target: { name: any; value: any } }) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   return (
     <Grid container spacing={2} className="Registro">
+      <ToastContainer />
       <Grid
         item
         xs={12}
@@ -29,7 +80,10 @@ function SignIn() {
         />
       </Grid>
       <Grid item xs={12} sm={6}>
-        <Box className="form-container" sx={{ textAlign: "center", height: "840px" }}>
+        <Box
+          className="form-container"
+          sx={{ textAlign: "center", height: "840px" }}
+        >
           {/* Right column with the login form */}
           <div className="form-wrapper">
             <Typography
@@ -49,7 +103,7 @@ function SignIn() {
                 Hackfest 2.0
               </span>
             </Typography>
-            <form>
+            <form onSubmit={handleSubmit}>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -58,6 +112,7 @@ function SignIn() {
                 id="email"
                 label="Correo"
                 name="email"
+                onChange={handleInputChange}
                 sx={{
                   maxWidth: "500px",
                   "& .MuiInputLabel-root": {
@@ -90,6 +145,7 @@ function SignIn() {
                 label="Contraseña"
                 type="password"
                 id="password"
+                onChange={handleInputChange}
                 sx={{
                   maxWidth: "500px",
                   "& .MuiInputLabel-root": {

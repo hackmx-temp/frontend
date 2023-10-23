@@ -4,18 +4,14 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
-import {
-  Typography,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-} from "@mui/material";
+import { Typography } from "@mui/material";
 
 import "./SignUp.css"; // You can style this component by defining your CSS in this file
 
 import { RegisteredUser, signUpUser } from "../../models/User";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -26,9 +22,12 @@ function SignUp() {
 
   const [error, setError] = useState(null);
 
-  const [openDialog, setOpenDialog] = useState(false);
+  const handleSuccess = (token: string) => {
+    // Save the token to local storage for maintaining the login session
+    localStorage.setItem("token", token);
+  };
 
-  const handleSubmit = async (event: { preventDefault: () => void; }) => {
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
     const user = {
@@ -42,24 +41,19 @@ function SignUp() {
         const user = response.data;
         var id = String(user.id);
         console.log(response.data);
-        const MENSAJE_EXITOSO =
-          "¡Ya eres parte del HackMX! <br>Tu ID es: " + id;
-        const LINK_WHATSAPP =
-          "<br>Unete al grupo de <a target='_blank' href='https://goo.su/xJUy'>whatsapp</a><br>¡Te esperamos este 27 de octubre!";
-        const SELECCION_EQUIPOS =
-          "<br>Espera la fecha para la formación de equipos";
-        setOpenDialog(true);
+        const token = response.data; // Assuming your response has a token
+        console.log(token);
+        toast.success("Registro exitoso");
+        handleSuccess(token); // Handle the success response
+
+        return;
       })
       .catch((error) => {
-        if (error.response) {
-          alert("Validation error: " + error.response.data.message);
-        } else {
-          alert("An error occurred while processing your request.");
-        }
+        toast.error("Registro fallido"); // Display error message
       });
   };
 
-  const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleInputChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -67,12 +61,9 @@ function SignUp() {
     });
   };
 
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
-  };
-
   return (
     <Grid container spacing={2} className="Registro">
+      <ToastContainer />
       <Grid
         item
         xs={12}
@@ -276,20 +267,6 @@ function SignUp() {
           </div>
         </Box>
       </Grid>
-
-      <Dialog open={openDialog} onClose={handleCloseDialog}>
-        <DialogTitle>Registration Successful</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            You have successfully registered! Your ID is: [Insert ID here]
-          </DialogContentText>
-          <DialogActions>
-            <Button onClick={handleCloseDialog} color="primary">
-              Close
-            </Button>
-          </DialogActions>
-        </DialogContent>
-      </Dialog>
     </Grid>
   );
 }
