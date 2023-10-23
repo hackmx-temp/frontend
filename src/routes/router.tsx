@@ -63,6 +63,10 @@ const routes: RouteObject[] = [
         path: "/usuario/mi-equipo",
         element: <MyTeam />,
       },
+      {
+        path: "/usuario/equipos/editar",
+        element: <EditTeam />,
+      },
     ],
   },
 ];

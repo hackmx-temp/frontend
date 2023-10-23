@@ -35,7 +35,7 @@ const navItemsLoggedOut = [
 ];
 
 const navItemsLoggedIn = [
-  { name: "Inicio", route: "/" },
+  { name: "Inicio", route: "/usuario" },
   { name: "Equipos", route: "/usuario/equipos" },
   { name: "Mi equipo", route: "/usuario/equipos/mi-equipo" },
   { name: "Crear equipo", route: "/usuario/equipos/crear" },
