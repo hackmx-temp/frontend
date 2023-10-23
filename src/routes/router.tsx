@@ -9,6 +9,7 @@ import { MyTeam } from "../pages/MyTeam";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
+import { EditTeam } from "../pages/EditTeam";
 
 const routes: RouteObject[] = [
   {

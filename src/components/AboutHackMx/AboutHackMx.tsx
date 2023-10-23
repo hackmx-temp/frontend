@@ -1,23 +1,30 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { CustomText } from '../CustomText'
-import theme from '../../theme/theme'
-import { BasicContainer, CardsWrapper, Header, SmallHeader, Wrapper } from './styles'
-import { Card } from '../Card'
-import hackathon from '../../assets/cardImages/hackathon.png'
-import goal from '../../assets/cardImages/goal.png'
-import idea from '../../assets/cardImages/idea.png'
+import React, { useState, useEffect, useRef } from "react";
+import { CustomText } from "../CustomText";
+import theme from "../../theme/theme";
+import {
+  BasicContainer,
+  CardsWrapper,
+  Header,
+  SmallHeader,
+  Wrapper,
+} from "./styles";
+import { Card } from "../Card";
+import hackathon from "../../Assets/cardImages/hackathon.png";
+import goal from "../../Assets/cardImages/goal.png";
+import idea from "../../Assets/cardImages/idea.png";
 
 const AboutHackMx = () => {
   const [isWelcomeVisible, setIsWelcomeVisible] = useState(false);
   const welcomeWrapper = useRef<HTMLDivElement | null>(null);
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
   const detailsWrapper = useRef<HTMLDivElement | null>(null);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       if (welcomeWrapper.current) {
         const rect = welcomeWrapper.current.getBoundingClientRect();
-        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const viewportHeight =
+          window.innerHeight || document.documentElement.clientHeight;
         if (rect.top <= viewportHeight && rect.bottom >= 0) {
           if (!isWelcomeVisible) {
             setIsWelcomeVisible(true);
@@ -27,11 +34,12 @@ const AboutHackMx = () => {
             setIsWelcomeVisible(false);
           }
         }
-      } 
-      
+      }
+
       if (detailsWrapper.current) {
         const rect = detailsWrapper.current.getBoundingClientRect();
-        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const viewportHeight =
+          window.innerHeight || document.documentElement.clientHeight;
         if (rect.top <= viewportHeight && rect.bottom >= 0) {
           if (!isDetailsVisible) {
             setIsDetailsVisible(true);
@@ -44,11 +52,11 @@ const AboutHackMx = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     handleScroll();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [isWelcomeVisible, isDetailsVisible]);
 
@@ -62,11 +70,10 @@ const AboutHackMx = () => {
           [HackMx], el epicentro de la innovación y la creatividad tecnológica en la [Región CDMX], organizado por alumnos y con el apoyo Departamento de Computación del Tecnológico de Monterrey.
           
           Este evento engloba la colaboración y talento de nuestros campus en [Santa Fe, Ciudad de México, Estado de México y Toluca].`}
-            alignment='center'
+            alignment="center"
             color={theme.color.mainOrange}
           />
-          <p>
-          </p>
+          <p></p>
         </BasicContainer>
       </Wrapper>
       {/* <Wrapper ref={detailsWrapper} isVisible={isDetailsVisible}> */}
@@ -105,7 +112,7 @@ const AboutHackMx = () => {
           Te esperamos en las instalaciones del [Campus Ciudad de México] este próximo [viernes 27 y sábado 28 de octubre de 2023]. Sé parte de la innovación. Sé parte de HackMx5.
           `}
             color={theme.color.mainOrange}
-            alignment='center'
+            alignment="center"
           />
         </BasicContainer>
       </Wrapper>
@@ -113,7 +120,7 @@ const AboutHackMx = () => {
         <img src="" alt="" />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AboutHackMx
+export default AboutHackMx;
