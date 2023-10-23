@@ -6,9 +6,9 @@ import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { BasicModalProps } from './types';
-import { SingleGallery } from '../SingleGallery';
-import { ClientText, ClientTitle, ModalBox, ModalContainer } from './styles';
-import { Divider } from '@mui/material';
+import { ClientSocialMedia, ClientSocialMediaWrapper, ClientText, ClientTitle, ModalBox, ModalContainer } from './styles';
+import { Divider, IconButton } from '@mui/material';
+import { Facebook } from '@mui/icons-material';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -51,13 +51,29 @@ const BasicModal: React.FC<BasicModalProps> = ({
             <ModalContainer>
               <ClientText width={client.images ? 'auto' : '100%'}>
                 {client?.projectDescription || 'Not Found'}
+                <p>
+                  Conoce sobre el reto: <a href={client?.challenge} target="_blank">{client?.challenge}</a>
+                </p>
               </ClientText>
-              {client.images && (
-                <div>
-                  <SingleGallery images={client.images} width='250px' height='250px' />
-                </div>
-              )}
             </ModalContainer>
+            <ClientSocialMediaWrapper>
+              {
+                client.socialMedias?.map((socialMedia) => (
+                  <IconButton
+                    key={socialMedia.icon}
+                    sx={{ marginRight: "10px" }}
+                    onClick={() => window.open(socialMedia.url, "_blank")}
+                  >
+                    <img
+                      src={socialMedia.icon}
+                      alt={socialMedia.username}
+                      width="30px"
+                      height="30px"
+                    />
+                  </IconButton>
+                ))
+              }
+            </ClientSocialMediaWrapper>
           </ModalBox>
         </Fade>
       </Modal>

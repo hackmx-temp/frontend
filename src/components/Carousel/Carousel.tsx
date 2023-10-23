@@ -93,7 +93,7 @@ const Carousel: React.FC<CarouselProps> = ({
                 key={index}
                 src={client.src}
                 alt={client.alt}
-                // onClick={() => handleImageClick(client)}
+                onClick={() => handleImageClick(client)}
               />
             </ImageContainer>
           ))}

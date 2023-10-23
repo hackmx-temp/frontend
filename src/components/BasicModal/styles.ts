@@ -47,3 +47,18 @@ export const ClientText = styled.p<{width?: string}>`
         line-height: 30px;
     }
 `;
+
+export const ClientSocialMediaWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ClientSocialMedia = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 10px;
+`;
