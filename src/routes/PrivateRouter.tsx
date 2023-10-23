@@ -7,7 +7,7 @@ const PrivateRouter: React.FC = () => {
   // Change header for the one with perfil
   return (
     <>
-      <Header />
+      <Header isLoggedIn={true} />
       <Outlet />
       <Footer />
     </>

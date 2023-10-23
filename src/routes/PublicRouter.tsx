@@ -6,7 +6,7 @@ import Header from "../components/Header";
 const PublicRouter: React.FC = () => {
   return (
     <>
-      <Header />
+      <Header isLoggedIn={false} />
       <Outlet />
       <Footer />
     </>
