@@ -9,7 +9,7 @@ const PrivateRouter = () => {
       {isAuthenticated ? (
         <>
           {" "}
-          <Header /> <Outlet /> <Footer />{" "}
+          <Header isLoggedIn={true} /> <Outlet /> <Footer />{" "}
         </>
       ) : (
         <Navigate to="/sign-in" replace={true} />

@@ -14,7 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { HeaderLogoImg, HeaderLogoImgContainer } from "./styles";
-import HackMx from "../../assets/hackMX.png";
+import HackMx from "../../Assets/hackMX.png";
 import theme from "../../theme/theme";
 import { Link, useLocation } from "react-router-dom";
 
@@ -24,19 +24,31 @@ interface Props {
    * You won't need it on your project.
    */
   window?: () => Window;
+  isLoggedIn: boolean;
 }
 
 const drawerWidth = 240;
-const navItems = [
-  {name: "Inicio", route: '/'}, 
-  {name: "Registro", route: '/registro'},
-  //{name: "Iniciar Sesión", route: '/sign-in'},
+const navItemsLoggedOut = [
+  { name: "Inicio", route: "/" },
+  { name: "Registro", route: "/registro" },
+  { name: "Iniciar Sesión", route: "/sign-in" },
+];
+
+const navItemsLoggedIn = [
+  { name: "Inicio", route: "/usuario" },
+  { name: "Equipos", route: "/usuario/equipos" },
+  { name: "Mi equipo", route: "/usuario/equipos/mi-equipo" },
+  { name: "Crear equipo", route: "/usuario/equipos/crear" },
+  { name: "Editar equipo", route: "/usuario/equipos/editar" },
+  { name: "Cerrar sesión", route: "/sign-in" },
 ];
 
 export default function DrawerAppBar(props: Props) {
-  const { window } = props;
+  const { window, isLoggedIn } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const location = useLocation();
+
+  const itemsToDisplay = isLoggedIn ? navItemsLoggedIn : navItemsLoggedOut;
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -51,36 +63,24 @@ export default function DrawerAppBar(props: Props) {
       </Link>
       <Divider />
       <List>
-        {
-          location.pathname === "/registro" ? (
-            <Link 
-              to="/" 
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              <ListItem disablePadding>
-                <ListItemButton sx={{ textAlign: "center" }}>
-                  <ListItemText primary="Inicio" />
-                </ListItemButton>
-              </ListItem>
-            </Link>
-          ) : (
-            <Link 
-              to="/registro"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              <ListItem disablePadding>
-                <ListItemButton sx={{ textAlign: "center" }}>
-                  <ListItemText primary="Registro" />
-                </ListItemButton>
-              </ListItem>
-            </Link>
-          )
-        }
+        {itemsToDisplay.map((item) => (
+          <Link
+            to={item.route}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText primary={item.name} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
+        ))}
       </List>
-    </Box >
+    </Box>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -115,40 +115,22 @@ export default function DrawerAppBar(props: Props) {
             </Link>
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) =>
-              item.name === "Registro" ? (
-                <Link to="/registro" key={item.name}>
-                  <Button
-                    sx={{
-                      color: theme.color.mainBlue,
-                      fontWeight: "600",
-                      fontSize: "16px",
-                      cursor: "pointer",
-                      fontFamily: "Popins, sans-serif",
-                      display: location.pathname === "/" ? null : "none",
-                    }}
-                  >
-                    {item.name}
-                  </Button>
-                </Link>
-              ) : (
-                <Link to="/" key={item.name}>
-                  <Button
-                    key={item.name}
-                    sx={{
-                      color: theme.color.mainBlue,
-                      fontWeight: "600",
-                      fontSize: "16px",
-                      cursor: "pointer",
-                      fontFamily: "Popins, sans-serif",
-                      display: location.pathname === "/registro" ? null : "none",
-                    }}
-                  >
-                    {item.name}
-                  </Button>
-                </Link>
-              )
-            )}
+            {itemsToDisplay.map((item) => (
+              <Link to={item.route} key={item.name}>
+                <Button
+                  sx={{
+                    color: theme.color.mainBlue,
+                    fontWeight: "600",
+                    fontSize: "16px",
+                    cursor: "pointer",
+                    fontFamily: "Popins, sans-serif",
+                    display: location.pathname === item.route ? "none" : null, // If current route, don't display
+                  }}
+                >
+                  {item.name}
+                </Button>
+              </Link>
+            ))}
           </Box>
         </Toolbar>
       </AppBar>

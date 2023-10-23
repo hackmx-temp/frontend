@@ -28,7 +28,6 @@ const routes: RouteObject[] = [
       {
         path: "/forgot-password",
         element: <ForgotPassword />,
-
       },
 
       {
@@ -60,8 +59,12 @@ const routes: RouteObject[] = [
         element: <CreateTeam />,
       },
       {
-        path: "/usuario/miequipo",
+        path: "/usuario/mi-equipo",
         element: <MyTeam />,
+      },
+      {
+        path: "/usuario/equipos/editar",
+        element: <EditTeam />,
       },
     ],
   },
