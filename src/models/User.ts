@@ -26,11 +26,11 @@ export type LogedUser = {
 }
 
 // Get base path from environment variable
-const BACK_HACK = 'http://localhost:8000/hackMX';
+const BACK_HACK = 'http://localhost:5000/hackMX';
 
 export async function createUser(user: User) {
     const json = JSON.stringify(user);
-    const url = `${BACK_HACK}/hackMX/user`;
+    const url = `${BACK_HACK}/user`;
     return await axios.post(url, json, {
         headers: {
             'Content-Type': 'application/json'

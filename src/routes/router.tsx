@@ -60,7 +60,7 @@ const routes: RouteObject[] = [
         element: <CreateTeam />,
       },
       {
-        path: "/usuario/mi-equipo",
+        path: "/usuario/equipos/mi-equipo",
         element: <MyTeam />,
       },
       {
