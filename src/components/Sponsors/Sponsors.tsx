@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Carousel } from '../Carousel'
-import awsLogo from "../../Assets/sponsors/aws.png";
-import dacompassLogo from "../../Assets/sponsors/dacompass.png";
-import liverpoolLogo from "../../Assets/sponsors/liverpool.png";
-import laModernaLogo from "../../Assets/sponsors/laModerna.png";
+import awsLogo from "../../assets/sponsors/aws.png";
+import dacompassLogo from "../../assets/sponsors/dacompass.png";
+import liverpoolLogo from "../../assets/sponsors/liverpool.png";
+import laModernaLogo from "../../assets/sponsors/laModerna.png";
 import { Header, Wrapper } from './styles';
 
 const Sponsors = () => {

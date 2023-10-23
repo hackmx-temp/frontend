@@ -14,7 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { HeaderLogoImg, HeaderLogoImgContainer } from "./styles";
-import HackMx from "../../Assets/hackMX.png";
+import HackMx from "../../assets/hackMX.png";
 import theme from "../../theme/theme";
 import { Link, useLocation } from "react-router-dom";
 
@@ -29,7 +29,9 @@ interface Props {
 const drawerWidth = 240;
 const navItems = [
   {name: "Inicio", route: '/'}, 
-  {name: "Registro", route: '/registro'}];
+  {name: "Registro", route: '/registro'},
+  //{name: "Iniciar Sesión", route: '/sign-in'},
+];
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;

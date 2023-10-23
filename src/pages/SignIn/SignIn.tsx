@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 
 import "./SignIn.css"; // You can style this component by defining your CSS in this file
-import { Typography } from "@mui/material";
+import {  Typography } from "@mui/material";
 
 import { LogedUser, signInUser } from "../../models/User";
 import { useNavigate } from "react-router-dom";
@@ -19,11 +19,19 @@ function SignIn() {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const [error, setError] = useState(null);
 
   const handleSuccess = (token: string) => {
     // Save the token to local storage for maintaining the login session
     localStorage.setItem("token", token);
+    toast.success("Inicio de sesión exitoso", {
+      autoClose: 1000, // Set a custom timeout of 3 seconds (3000 milliseconds)
+    });
+    setTimeout(() => {
+      navigate("/usuario/equipos");
+    }, 2000);
   };
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
@@ -41,7 +49,7 @@ function SignIn() {
         console.log(response.data);
         const token = response.data; // Assuming your response has a token
         console.log(token);
-        toast.success("Inicio de sesión exitoso");
+
         handleSuccess(token); // Handle the success response
 
         return;

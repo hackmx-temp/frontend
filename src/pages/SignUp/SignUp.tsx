@@ -19,12 +19,20 @@ function SignUp() {
     password: "",
     confirmPassword: "",
   });
-
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
 
   const handleSuccess = (token: string) => {
     // Save the token to local storage for maintaining the login session
     localStorage.setItem("token", token);
+    toast.success("Registro exitoso", {
+      autoClose: 1000, // Set a custom timeout of 3 seconds (3000 milliseconds)
+    });
+    setTimeout(() => {
+      navigate("/usuario/equipos");
+
+      // Show the toast after navigation
+    }, 2000);
   };
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
@@ -43,7 +51,6 @@ function SignUp() {
         console.log(response.data);
         const token = response.data; // Assuming your response has a token
         console.log(token);
-        toast.success("Registro exitoso");
         handleSuccess(token); // Handle the success response
 
         return;
