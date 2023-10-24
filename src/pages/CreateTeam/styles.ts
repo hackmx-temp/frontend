@@ -35,3 +35,11 @@ export const AddParticipantWrapper = styled.div`
   width: 100%;
   margin: 15px 0 60px 0;
 `;
+
+export const CreateTeamWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+`;
