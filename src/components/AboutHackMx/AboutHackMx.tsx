@@ -13,6 +13,7 @@ import hackathon from "../../Assets/cardImages/hackathon.png";
 import goal from "../../Assets/cardImages/goal.png";
 import idea from "../../Assets/cardImages/idea.png";
 
+
 const AboutHackMx = () => {
   const [isWelcomeVisible, setIsWelcomeVisible] = useState(false);
   const welcomeWrapper = useRef<HTMLDivElement | null>(null);

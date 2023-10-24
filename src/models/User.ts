@@ -25,6 +25,11 @@ export type LogedUser = {
     password: string;
 }
 
+export type ResetPasswordData = {
+    password: string;
+    confirmPassword: string;
+}
+
 // Get base path from environment variable
 const BACK_HACK = 'http://localhost:5000/hackMX';
 
@@ -56,6 +61,16 @@ export async function signUpUser(user: RegisteredUser) {
 export async function signInUser(user: LogedUser) {
     const json = JSON.stringify(user);
     const url = `${BACK_HACK}/auth/login`;
+    return await axios.post(url, json, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+}
+
+export async function resetPassword(data: ResetPasswordData) {
+    const json = JSON.stringify(data);
+    const url = `${BACK_HACK}/auth/reset-password`; 
     return await axios.post(url, json, {
         headers: {
             'Content-Type': 'application/json'
