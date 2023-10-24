@@ -9,6 +9,8 @@ import { ButtonContainer, CrossContainer, CustomInputLabel, ModalHeader } from '
 import { TextField } from '@mui/material';
 import { TeamTable } from '../../components/TeamTable';
 import theme from '../../theme/theme';
+import { Member, removeMember, updateTeamName } from '../../models/Team';
+import { ToastContainer, toast } from 'react-toastify';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -34,7 +36,7 @@ const teamTableCols = [
     { id: 'semester', label: 'Semestre' },
 ]
 
-const teamMembers = [
+/* const teamMembers = [
     {
         actions: <Cancel
             sx={{
@@ -95,11 +97,18 @@ const teamMembers = [
         campus: "CCM",
         semester: "7"
     },
-];
+]; */
 
-const EditTeam = () => {
+type EditTeamProps = {
+    teamName: string;
+    teamMembers: Member[];
+}
+
+const EditTeam = (props: EditTeamProps) => {
     const [open, setOpen] = React.useState(false);
-    const [teamName, setTeamName] = React.useState('Equipo X');
+    const [teamName, setTeamName] = React.useState(props.teamName);
+    const [teamMembers, setTeamMembers] = React.useState<Member[]>(props.teamMembers);
+    const [deletedMembers, setDeletedMembers] = React.useState<Member[]>([]);
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -108,8 +117,66 @@ const EditTeam = () => {
         setTeamName(event.target.value);
     }
 
+    const handleTeamMembers = (enrollment_id: string) => {
+        // Borrar un miembro del equipo
+        setDeletedMembers([...deletedMembers, teamMembers.find((member) => member.enrollment_id === enrollment_id)!]);
+        setTeamMembers(teamMembers.filter((member) => member.enrollment_id !== enrollment_id));
+    }
+
+    const createActions = (enrollment_id: string) => {
+        // Crear manejadores de click específicos para cada acción
+        const handleDeleteClick = () => handleTeamMembers(enrollment_id);
+
+        return (
+            <Cancel
+                sx={{
+                    color: theme.color.errors.base,
+                    '&:hover': {
+                        cursor: 'pointer',
+                    },
+                }}
+                onClick={handleDeleteClick}
+            />
+        );
+    }
+
+    const handleSaveChanges = () => {
+        if(teamName !== props.teamName) {
+            updateTeamName(teamName).then((res) => {
+                toast.success(res.data.message, {
+                    autoClose: 2000,
+                });
+            }).catch((err) => {
+                toast.error(err.response.data.message, {
+                    autoClose: 2000,
+                });
+            });
+        }
+        console.log(teamMembers)
+        console.log(deletedMembers) 
+        deletedMembers.forEach(member => {
+            removeMember(member.email).then((res) => {
+                toast.success(res.data.message, {
+                    autoClose: 2000,
+                });
+                setDeletedMembers([]);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+            }).catch((err) => {
+                toast.error(err.response.data.message, {
+                    autoClose: 2000,
+                });
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+            });
+        });
+    }
+
     return (
         <div>
+            <ToastContainer />
             <Edit
                 sx={{
                     width: "46px",
@@ -163,7 +230,16 @@ const EditTeam = () => {
                         <CustomInputLabel>Participantes actuales</CustomInputLabel>
                         <TeamTable
                             columns={teamTableCols}
-                            rows={teamMembers}
+                            rows={teamMembers.map((member) => {
+                                return {
+                                    actions: createActions(member.enrollment_id),
+                                    id: member.enrollment_id,
+                                    name: member.name,
+                                    email: member.email,
+                                    campus: member.campus,
+                                    semester: member.semester,
+                                }
+                            })}
                         />
                         <ButtonContainer>
                             <Button
@@ -180,7 +256,7 @@ const EditTeam = () => {
                                         backgroundColor: "#114880",
                                     },
                                 }}
-                            // onClick={}
+                            onClick={handleSaveChanges}
                             // disabled={}
                             >
                                 Guardar cambios

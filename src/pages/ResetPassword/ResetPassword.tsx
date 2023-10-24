@@ -1,83 +1,117 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Link, useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, Typography } from "@mui/material";
 import "./ResetPassword.css";
-import { resetPassword } from "../../models/User";
+import { ResetPasswordData, resetPassword, verifyToken } from "../../models/User";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
 
 function ResetPassword() {
-    const [formData, setFormData] = useState({
-      password: "",
-      confirmPassword: "",
-    });
+  const [formData, setFormData] = useState({
+    password: "",
+    confirmPassword: "",
+  });
 
-    const { token } = useParams();
+  const { token } = useParams();
 
-    const navigate = useNavigate();
-    const [error, setError] = useState<string | null>(null); 
-  
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-      
-        const hasUpperCase = /[A-Z]/.test(formData.password);
-        const hasSpecialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(formData.password);
-        const hasNumber = /[0-9]/.test(formData.password);
-
-      
-        if (formData.password.length < 8) {
-          setError("La contraseña debe tener al menos 8 caracteres.");
-          return;
-        }
-      
-        if (!hasUpperCase) {
-          setError("La contraseña debe contener al menos una letra mayúscula.");
-          return;
-        }
-      
-        if (!hasSpecialChar) {
-          setError("La contraseña debe contener al menos un carácter especial.");
-          return;
-        }
-
-        if (!hasNumber) { 
-            setError("La contraseña debe contener al menos un número.");
-            return;
-          }
-      
-        if (formData.password !== formData.confirmPassword) {
-          setError("Las contraseñas no coinciden.");
-          return;
-        }
-
-        axios.post('hackMX/auth/resetPassword', {
-            token: "2a8405365873aaaa38bfb071f1ccaa07ebf476b8",
-            password: formData.password,
-        })
-
-        .then((response) => {
-          toast.success("Contraseña restablecida exitosamente");
-          navigate("/sign-in");
-        })
-        .catch((error) => {
-          setError("Error al restablecer la contraseña");
-        });
-      }
-  
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {  
-      const { name, value } = e.target;
-      setFormData({
-        ...formData,
-        [name]: value,
+  const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
+  const [validToken, setValidToken] = useState<boolean>(false);
+  // Validar el token
+  // Si el token es válido, mostrar el formulario
+  // Si el token no es válido, mostrar un mensaje de error
+  useEffect(() => {
+    console.log("Verifying token")
+    verifyToken(token as string)
+      .then((_) => {
+        setValidToken(true);
+      })
+      .catch((error) => {
+        console.log("Es invalido")
+        setValidToken(false);
+        setError(error.response.data.message);
       });
+  }, [token])
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const hasUpperCase = /[A-Z]/.test(formData.password);
+    const hasSpecialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(formData.password);
+    const hasNumber = /[0-9]/.test(formData.password);
+
+
+    if (formData.password.length < 8) {
+      setError("La contraseña debe tener al menos 8 caracteres.");
+      return;
     }
 
+    if (!hasUpperCase) {
+      setError("La contraseña debe contener al menos una letra mayúscula.");
+      return;
+    }
+
+    if (!hasSpecialChar) {
+      setError("La contraseña debe contener al menos un carácter especial.");
+      return;
+    }
+
+    if (!hasNumber) {
+      setError("La contraseña debe contener al menos un número.");
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Las contraseñas no coinciden.");
+      return;
+    }
+
+    console.log(token);
+
+    resetPassword({
+      token: token,
+      password: formData.password,
+    } as ResetPasswordData)
+      .then((_) => {
+        toast.success("Contraseña restablecida exitosamente", {
+          autoClose: 1000,
+        });
+        setTimeout(() => {
+          navigate("/sign-in");
+        }, 3000);
+      })
+      .catch((error) => {
+        setError(error.response.data.message);
+      });
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  }
+
+  const errorDialog = () => {
+    const error = "El token no es válido o ha expirado.";
+    return (
+      <Dialog open={true}>
+        <DialogTitle>Error</DialogTitle>
+        <DialogContent>{error}</DialogContent>
+        <Button onClick={() => navigate("/forgot-password")}>Aceptar</Button>
+      </Dialog>
+    )
+  }
+
+  if (!validToken) {
+    return errorDialog()
+  }
   return (
     <Grid container spacing={2} className="Registro">
       <ToastContainer />
@@ -91,7 +125,7 @@ function ResetPassword() {
               Recupera tu contraseña
             </Typography>
             <Typography component="div" sx={{ color: "#3B5998", fontWeight: "bold", marginBottom: '10px', fontSize: '45px' }}>
-              Hackfest 2.0
+              HackMX
             </Typography>
             <Typography variant="body2" component="p" style={{ padding: '10px 40px 20px 60px', fontSize: '16px', marginTop: '30px', textAlign: "left" }}>
               Recupera tu contraseña ingresando una nueva y confírmala.
@@ -174,18 +208,6 @@ function ResetPassword() {
                 </Button>
               </div>
             </form>
-            <Box sx={{ fontFamily: "Poppins", marginBottom: "2rem" }}>
-              <p style={{ margin: 0 }}>¿Has olvidado tus datos de inicio de sesión?</p>
-              <Link to="/forgot-password" className="forgot-password-link" style={{ fontWeight: "bold", textDecorationLine: "none", color: "orange " }}>
-                Obtén ayuda
-              </Link>
-            </Box>
-            <Box sx={{ fontFamily: "Poppins" }}>
-              <span style={{ marginRight: "1rem" }}>¿Aún no tienes cuenta?</span>
-              <Link to="/registro" className="register-link" style={{ fontWeight: "bold", textDecorationLine: "none", color: "orange " }}>
-                Regístrate
-              </Link>
-            </Box>
           </div>
         </Box>
       </Grid>

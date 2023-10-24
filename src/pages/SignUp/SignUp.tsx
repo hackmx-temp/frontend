@@ -24,7 +24,7 @@ function SignUp() {
 
   const handleSuccess = (token: string) => {
     // Save the token to local storage for maintaining the login session
-    localStorage.setItem("token", JSON.stringify(token));
+    localStorage.setItem("token", token);
     toast.success("Registro exitoso", {
       autoClose: 1000, // Set a custom timeout of 3 seconds (3000 milliseconds)
     });
@@ -46,11 +46,7 @@ function SignUp() {
 
     signUpUser(user)
       .then((response) => {
-        const user = response.data;
-        var id = String(user.id);
-        console.log(response.data);
-        const token = response.data; // Assuming your response has a token
-        console.log(token);
+        const token = response.data.token; // Assuming your response has a token
         handleSuccess(token); // Handle the success response
 
         return;

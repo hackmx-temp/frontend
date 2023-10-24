@@ -13,10 +13,24 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import TablePagination from "@mui/material/TablePagination";
 import { Item, TableViewProps } from "./types";
 import { DetailContent } from "./styles";
+import { createTeamRequest } from "../../models/Team";
+import { ToastContainer, toast } from "react-toastify";
 
 const TableView: React.FC<TableViewProps> = ({ items, rowsPerPage = 10 }) => {
   const [openRow, setOpenRow] = useState<number | null>(null);
   const [page, setPage] = useState(0);
+
+  const handleJoinTeamRequest = () => {
+    createTeamRequest(items[openRow as number - 1].nameTeam).then((res) => {
+      toast.success("Solicitud enviada con éxito", {
+        autoClose: 2000,
+      });
+    }).catch((err) => {
+      toast.error(err.response.data.message, {
+        autoClose: 2000,
+      });
+    });
+  };
 
   const handleToggle = (id: number) => {
     if (openRow === id) {
@@ -41,6 +55,7 @@ const TableView: React.FC<TableViewProps> = ({ items, rowsPerPage = 10 }) => {
 
   return (
     <>
+      <ToastContainer />
       <Table>
         <TableHead>
           <TableRow>
@@ -54,7 +69,7 @@ const TableView: React.FC<TableViewProps> = ({ items, rowsPerPage = 10 }) => {
             <React.Fragment key={item.id}>
               <TableRow>
                 <TableCell>{item.nameTeam}</TableCell>
-                <TableCell>{item.numberMembers}/4</TableCell>
+                <TableCell>{item.numberMembers}/5</TableCell>
                 <TableCell>
                   <IconButton onClick={() => handleToggle(item.id)}>
                     {openRow === item.id ? (
@@ -92,6 +107,7 @@ const TableView: React.FC<TableViewProps> = ({ items, rowsPerPage = 10 }) => {
                       variant="contained"
                       color="primary"
                       style={{ marginTop: "10px", float: "right" }}
+                      onClick={handleJoinTeamRequest}
                     >
                       Unirse
                     </Button>

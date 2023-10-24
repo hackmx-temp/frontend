@@ -2,15 +2,18 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 
 import "./ForgotPassword.css"; // Define tus estilos en este archivo
 import { Typography } from "@mui/material";
 import { sendEmail } from "../../models/User";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ForgotPassword() {
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -18,15 +21,20 @@ function ForgotPassword() {
     // eslint-disable-next-line no-console
     const email = data.get("email");
     sendEmail(email as string).then((res) => {
-      toast.success("Correo enviado exitosamente");
-      console.log(res);
+      toast.success(res.data.message, {
+        autoClose: 2000, // Set a custom timeout of 3 seconds (3000 milliseconds)
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
     }).catch((err) => {
-      console.log(err);
+      toast.error(err.response.data.message)
     });
   };
 
   return (
     <Grid container spacing={2} className="Registro">
+      <ToastContainer />
       <Grid
         item
         xs={12}

@@ -32,7 +32,7 @@ const routes: RouteObject[] = [
         element: <ForgotPassword />,
       },
       {
-        path: "/reset-password",
+        path: "/reset-password/:token",
         element: <ResetPassword />,
 
       },
@@ -68,10 +68,6 @@ const routes: RouteObject[] = [
       {
         path: "/usuario/equipos/mi-equipo",
         element: <MyTeam />,
-      },
-      {
-        path: "/usuario/equipos/editar",
-        element: <EditTeam />,
       },
     ],
   },

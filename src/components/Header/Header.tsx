@@ -39,7 +39,6 @@ const navItemsLoggedIn = [
   { name: "Equipos", route: "/usuario/equipos" },
   { name: "Mi equipo", route: "/usuario/equipos/mi-equipo" },
   { name: "Crear equipo", route: "/usuario/equipos/crear" },
-  { name: "Editar equipo", route: "/usuario/equipos/editar" },
   { name: "Cerrar sesión", route: "/sign-in" },
 ];
 
@@ -69,7 +68,13 @@ export default function DrawerAppBar(props: Props) {
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <ListItem disablePadding>
-              <ListItemButton sx={{ textAlign: "center" }}>
+              <ListItemButton sx={{ textAlign: "center" }} onClick={
+                () => {
+                  if (item.name === "Cerrar sesión") {
+                    localStorage.removeItem("token");
+                  }
+                }
+              }>
                 <ListItemText primary={item.name} />
               </ListItemButton>
             </ListItem>
@@ -125,6 +130,11 @@ export default function DrawerAppBar(props: Props) {
                     cursor: "pointer",
                     fontFamily: "Popins, sans-serif",
                     display: location.pathname === item.route ? "none" : null, // If current route, don't display
+                  }}
+                  onClick={() => {
+                    if (item.name === "Cerrar sesión") {
+                      localStorage.removeItem("token");
+                    }
                   }}
                 >
                   {item.name}

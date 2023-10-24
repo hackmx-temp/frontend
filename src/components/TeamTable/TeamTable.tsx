@@ -1,12 +1,11 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { Paper, Table, TableBody, TableContainer, TableHead, TableRow } from '@mui/material'
 import React from 'react'
 import { TeamTableProps } from './types'
 import { CustomCell, CustomCellLabel, CustomRow } from './styles'
-import theme from '../../theme/theme'
 
 const TeamTable: React.FC<TeamTableProps> = ({
     columns,
-    rows
+    rows,
 }) => {
     return (
         <Paper sx={{ width: '100%', margin: 'auto', overflow: 'hidden', fontSize: '16px', marginBottom: "30px" }}>
