@@ -105,6 +105,18 @@ export async function resetPassword(data: ResetPasswordData) {
     });
 }
 
+// Create team
+export async function createTeam(team_name: string) {
+    const json = JSON.stringify({team_name: team_name});
+    const url = `${BACK_HACK}/registeredUser/createTeam`; 
+    return await axios.post(url, json, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': getToken()
+        }
+    });
+}
+
 // Get all teams
 export async function getTeams() {
     const url = `${BACK_HACK}/team/all`;
@@ -168,7 +180,7 @@ export async function deleteTeam() {
 export async function updateTeamName(oldName: string) {
     const url = `${BACK_HACK}/registeredUser/updateTeamName`;
     const json = JSON.stringify({
-        name: oldName
+        new_team_name: oldName
     });
     return await axios.patch(url, json, {
         headers: {
@@ -181,6 +193,20 @@ export async function updateTeamName(oldName: string) {
 // Remove team member
 export async function removeMember(email: string) {
     const url = `${BACK_HACK}/registeredUser/removeMember`;
+    const json = JSON.stringify({
+        requested_email: email
+    });
+    return await axios.post(url, json, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': getToken()
+        }
+    });
+}
+
+// Add team member
+export async function addMember(email: string) {
+    const url = `${BACK_HACK}/registeredUser/addMember`;
     const json = JSON.stringify({
         requested_email: email
     });
