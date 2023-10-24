@@ -25,7 +25,7 @@ function SignIn() {
 
   const handleSuccess = (token: string) => {
     // Save the token to local storage for maintaining the login session
-    localStorage.setItem("token", token);
+    localStorage.setItem("token", JSON.stringify(token));
     toast.success("Inicio de sesión exitoso", {
       autoClose: 1000, // Set a custom timeout of 3 seconds (3000 milliseconds)
     });
