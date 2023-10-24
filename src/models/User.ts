@@ -25,14 +25,14 @@ export type LogedUser = {
     password: string;
 }
 
-function getToken(){
-    const stringToken = JSON.parse(localStorage.getItem('token') || "token: ''").token;
-    return stringToken;
-}
-
 export type ResetPasswordData = {
     password: string;
     confirmPassword: string;
+}
+
+function getToken(){
+    const stringToken = JSON.parse(localStorage.getItem('token') || "token: ''").token;
+    return stringToken;
 }
 
 // Get base path from environment variable
@@ -66,6 +66,28 @@ export async function signUpUser(user: RegisteredUser) {
 export async function signInUser(user: LogedUser) {
     const json = JSON.stringify(user);
     const url = `${BACK_HACK}/auth/login`;
+    return await axios.post(url, json, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+}
+
+// Send email
+export async function sendEmail(email: string) {
+    const json = JSON.stringify({email: email});
+    const url = `${BACK_HACK}/email/resetPassword`; 
+    return await axios.post(url, json, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+}
+
+// Verify token
+export async function verifyToken(token: string) {
+    const json = JSON.stringify({token: token});
+    const url = `${BACK_HACK}/auth/verify-token`; 
     return await axios.post(url, json, {
         headers: {
             'Content-Type': 'application/json'

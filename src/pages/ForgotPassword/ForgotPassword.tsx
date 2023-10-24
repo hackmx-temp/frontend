@@ -7,8 +7,24 @@ import Box from "@mui/material/Box";
 
 import "./ForgotPassword.css"; // Define tus estilos en este archivo
 import { Typography } from "@mui/material";
+import { sendEmail } from "../../models/User";
+import { toast } from "react-toastify";
 
 function ForgotPassword() {
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    // eslint-disable-next-line no-console
+    const email = data.get("email");
+    sendEmail(email as string).then((res) => {
+      toast.success("Correo enviado exitosamente");
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
+    });
+  };
+
   return (
     <Grid container spacing={2} className="Registro">
       <Grid
@@ -77,7 +93,7 @@ function ForgotPassword() {
                 Podemos ayudarte a cambiar tu contraseña mediante la dirección de correo electrónico
               </Typography>
             </Typography>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <span style={{ fontSize: '18px', marginRight: '10px', padding: '30px 40px 20px 30px' }}>Correo</span>
 
