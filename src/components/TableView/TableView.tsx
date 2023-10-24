@@ -22,15 +22,17 @@ const TableView: React.FC<TableViewProps> = ({ items, rowsPerPage = 10 }) => {
 
   const handleJoinTeamRequest = () => {
     const initial = items[0].id;
-    createTeamRequest(items[openRow as number - initial].nameTeam).then((res) => {
-      toast.success("Solicitud enviada con éxito", {
-        autoClose: 2000,
+    createTeamRequest(items[(openRow as number) - initial].nameTeam)
+      .then((res) => {
+        toast.success("Solicitud enviada con éxito", {
+          autoClose: 2000,
+        });
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message, {
+          autoClose: 2000,
+        });
       });
-    }).catch((err) => {
-      toast.error(err.response.data.message, {
-        autoClose: 2000,
-      });
-    });
   };
 
   const handleToggle = (id: number) => {
@@ -66,14 +68,14 @@ const TableView: React.FC<TableViewProps> = ({ items, rowsPerPage = 10 }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {items.map((item) => (
-            <React.Fragment key={item.id}>
+          {items.map((item, index) => (
+            <React.Fragment key={index}>
               <TableRow>
                 <TableCell>{item.nameTeam}</TableCell>
                 <TableCell>{item.numberMembers}/5</TableCell>
                 <TableCell>
-                  <IconButton onClick={() => handleToggle(item.id)}>
-                    {openRow === item.id ? (
+                  <IconButton onClick={() => handleToggle(index)}>
+                    {openRow === index ? (
                       <ExpandMoreIcon />
                     ) : (
                       <ChevronRightIcon />
@@ -81,7 +83,7 @@ const TableView: React.FC<TableViewProps> = ({ items, rowsPerPage = 10 }) => {
                   </IconButton>
                 </TableCell>
               </TableRow>
-              {openRow === item.id && (
+              {openRow === index && (
                 <TableRow>
                   <TableCell colSpan={3}>
                     <DetailContent>
