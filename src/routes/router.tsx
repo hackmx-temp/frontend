@@ -10,6 +10,7 @@ import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import { EditTeam } from "../pages/EditTeam";
+import ResetPassword from "../pages/ResetPassword/ResetPassword";
 
 const routes: RouteObject[] = [
   {
@@ -29,6 +30,11 @@ const routes: RouteObject[] = [
       {
         path: "/forgot-password",
         element: <ForgotPassword />,
+      },
+      {
+        path: "/reset-password",
+        element: <ResetPassword />,
+
       },
 
       {
