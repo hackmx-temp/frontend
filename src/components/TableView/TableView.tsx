@@ -21,7 +21,8 @@ const TableView: React.FC<TableViewProps> = ({ items, rowsPerPage = 10 }) => {
   const [page, setPage] = useState(0);
 
   const handleJoinTeamRequest = () => {
-    createTeamRequest(items[openRow as number - 1].nameTeam).then((res) => {
+    const initial = items[0].id;
+    createTeamRequest(items[openRow as number - initial].nameTeam).then((res) => {
       toast.success("Solicitud enviada con éxito", {
         autoClose: 2000,
       });

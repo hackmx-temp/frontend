@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { SearchBar } from "../../components/SearchBar";
 import { TableView } from "../../components/TableView";
 import { TableContainer } from "./styles";
-import { getTeams } from "../../models/Team";
+import { Member, MyTeamType, getTeams } from "../../models/Team";
+import { CircularProgress } from "@mui/material";
+import { DetailItem, Item } from "../../components/TableView/types";
 
 const Teams = () => {
 
@@ -10,6 +12,9 @@ const Teams = () => {
   const [teams, setTeams] = useState([]);
   // Estado para la barra de búsqueda
   const [searchValue, setSearchValue] = useState("");
+
+  // Loading
+  const [loading, setLoading] = useState(true);
 
   const getAllTeams = () => {
     // Llamar al endpoint para obtener todos los equipos
@@ -22,33 +27,38 @@ const Teams = () => {
       console.log(err);
     }
     );
+    setLoading(false);
   }
 
   const mapTeams = () => {
-    const filteredTeams = teams.filter((team: any) =>
+    const filteredTeams = teams.filter((team: MyTeamType) =>
       team.name.toLowerCase().includes(searchValue.toLowerCase())
     );
 
-    return filteredTeams.map((team: any) => {
+    return filteredTeams.map((team: MyTeamType) => {
       return {
         id: team.id,
         nameTeam: team.name,
         numberMembers: team.members.length,
-        details: team.members.map((member: any) => {
+        details: team.members.map((member: Member) => {
           return {
             nameMember: member.name,
             campus: member.campus,
-            semester: member.semester,
-          }
+            semester: member.semester.toString(),
+          } as DetailItem
         })
       }
-    })
+    });
   }
 
   useEffect(() => {
     getAllTeams();
     console.log(teams);
   }, [])
+
+  if(loading) return (
+    <CircularProgress />
+  )
 
   return (
     <div>
