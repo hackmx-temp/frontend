@@ -48,8 +48,8 @@ function SignIn() {
         handleSuccess(token); // Handle the success response
         return;
       })
-      .catch((_) => {
-        toast.error("Credenciales Inválidas"); // Display error message
+      .catch((error) => {
+        toast.error(error.response.data.message); // Display error message
       });
   };
 

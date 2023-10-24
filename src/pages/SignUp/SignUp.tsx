@@ -79,7 +79,7 @@ function SignUp() {
         return;
       })
       .catch((error) => {
-        toast.error("Registro fallido"); // Display error message
+        toast.error(error.response.data.message); // Display error message
       });
   };
 
