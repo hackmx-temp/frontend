@@ -10,6 +10,7 @@ import { ResetPasswordData, resetPassword, verifyToken } from "../../models/User
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { PASSWORD_VALIDATORS } from "../../models/Constants";
 
 function ResetPassword() {
   const [formData, setFormData] = useState({
@@ -26,13 +27,11 @@ function ResetPassword() {
   // Si el token es válido, mostrar el formulario
   // Si el token no es válido, mostrar un mensaje de error
   useEffect(() => {
-    console.log("Verifying token")
     verifyToken(token as string)
       .then((_) => {
         setValidToken(true);
       })
       .catch((error) => {
-        console.log("Es invalido")
         setValidToken(false);
         setError(error.response.data.message);
       });
@@ -41,9 +40,9 @@ function ResetPassword() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const hasUpperCase = /[A-Z]/.test(formData.password);
-    const hasSpecialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(formData.password);
-    const hasNumber = /[0-9]/.test(formData.password);
+    const hasUpperCase = PASSWORD_VALIDATORS.hasUpperCase(formData.password);
+    const hasSpecialChar = PASSWORD_VALIDATORS.hasSpecialChar(formData.password);
+    const hasNumber = PASSWORD_VALIDATORS.hasNumber(formData.password);
 
 
     if (formData.password.length < 8) {
@@ -71,7 +70,7 @@ function ResetPassword() {
       return;
     }
 
-    console.log(token);
+    setError('');
 
     resetPassword({
       token: token,

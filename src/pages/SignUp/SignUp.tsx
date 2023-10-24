@@ -12,6 +12,7 @@ import { RegisteredUser, signUpUser } from "../../models/User";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { PASSWORD_VALIDATORS } from "../../models/Constants";
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ function SignUp() {
     confirmPassword: "",
   });
   const navigate = useNavigate();
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string>('');
 
   const handleSuccess = (token: string) => {
     // Save the token to local storage for maintaining the login session
@@ -35,8 +36,34 @@ function SignUp() {
     }, 2000);
   };
 
+  const handlePasswordValidation = () => {
+    const password = formData.password, confirmPassword = formData.confirmPassword;
+    if(!PASSWORD_VALIDATORS.hasNumber(password)){
+      setError("La contraseña debe contener al menos un número");
+      return;
+    }
+
+    if(!PASSWORD_VALIDATORS.hasUpperCase(password)){
+      setError("La contraseña debe contener al menos una letra mayúscula");
+      return;
+    }
+
+    if(!PASSWORD_VALIDATORS.hasSpecialChar(password)){
+      setError("La contraseña debe contener al menos un carácter especial");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Las contraseñas no coinciden");
+      return;
+    }
+    setError('');
+  }
+
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
+
+    handlePasswordValidation();
 
     const user = {
       email: formData.email,
@@ -207,7 +234,7 @@ function SignUp() {
                   },
                 }}
               />
-              {error && (
+              {error !== '' && (
                 <div
                   style={{
                     color: "red",

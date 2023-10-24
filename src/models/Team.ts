@@ -18,6 +18,7 @@ export type MyTeamType = {
     id: number,
     name: string,
     is_completed: boolean,
+    campus: string,
     members: Member[]
 }
 

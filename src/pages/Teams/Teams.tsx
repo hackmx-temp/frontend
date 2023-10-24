@@ -20,7 +20,6 @@ const Teams = () => {
     // Llamar al endpoint para obtener todos los equipos
     getTeams().then(
       (res) => {
-        console.log(res.data);
         setTeams(res.data);
       }
     ).catch((err) => {
@@ -39,6 +38,7 @@ const Teams = () => {
       return {
         id: team.id,
         nameTeam: team.name,
+        campus: team.campus,
         numberMembers: team.members.length,
         details: team.members.map((member: Member) => {
           return {
@@ -53,7 +53,6 @@ const Teams = () => {
 
   useEffect(() => {
     getAllTeams();
-    console.log(teams);
   }, [])
 
   if(loading) return (

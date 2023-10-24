@@ -21,8 +21,7 @@ const TableView: React.FC<TableViewProps> = ({ items, rowsPerPage = 10 }) => {
   const [page, setPage] = useState(0);
 
   const handleJoinTeamRequest = () => {
-    const initial = items[0].id;
-    createTeamRequest(items[(openRow as number) - initial].nameTeam)
+    createTeamRequest(items[openRow as number].nameTeam)
       .then((res) => {
         toast.success("Solicitud enviada con éxito", {
           autoClose: 2000,
@@ -64,6 +63,7 @@ const TableView: React.FC<TableViewProps> = ({ items, rowsPerPage = 10 }) => {
           <TableRow>
             <TableCell>Nombre del equipo</TableCell>
             <TableCell>Número de participantes</TableCell>
+            <TableCell>Campus</TableCell>
             <TableCell />
           </TableRow>
         </TableHead>
@@ -73,6 +73,7 @@ const TableView: React.FC<TableViewProps> = ({ items, rowsPerPage = 10 }) => {
               <TableRow>
                 <TableCell>{item.nameTeam}</TableCell>
                 <TableCell>{item.numberMembers}/5</TableCell>
+                <TableCell>{item.campus}</TableCell>
                 <TableCell>
                   <IconButton onClick={() => handleToggle(index)}>
                     {openRow === index ? (
@@ -85,7 +86,7 @@ const TableView: React.FC<TableViewProps> = ({ items, rowsPerPage = 10 }) => {
               </TableRow>
               {openRow === index && (
                 <TableRow>
-                  <TableCell colSpan={3}>
+                  <TableCell colSpan={4}>
                     <DetailContent>
                       <Table size="small">
                         <TableHead>

@@ -10,6 +10,7 @@ export interface Item {
   id: number;
   nameTeam: string;
   numberMembers: number;
+  campus: string;
   details: DetailItem[];
 }
 

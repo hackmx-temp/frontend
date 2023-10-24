@@ -80,7 +80,7 @@ export async function sendEmail(email: string) {
 // Verify token
 export async function verifyToken(token: string) {
     const json = JSON.stringify({token: token});
-    const url = `${BACK_HACK}/auth/verify-token`; 
+    const url = `${BACK_HACK}/passwordResetToken/validate`; 
     return await axios.post(url, json, {
         headers: {
             'Content-Type': 'application/json'

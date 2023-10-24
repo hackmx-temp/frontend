@@ -146,14 +146,18 @@ const EditTeam = (props: EditTeamProps) => {
                 toast.success(res.data.message, {
                     autoClose: 2000,
                 });
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2500)
             }).catch((err) => {
                 toast.error(err.response.data.message, {
                     autoClose: 2000,
                 });
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2500)
             });
-        }
-        console.log(teamMembers)
-        console.log(deletedMembers) 
+        } 
         deletedMembers.forEach(member => {
             removeMember(member.email).then((res) => {
                 toast.success(res.data.message, {
