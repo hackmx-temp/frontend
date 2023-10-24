@@ -73,6 +73,28 @@ export async function signInUser(user: LogedUser) {
     });
 }
 
+// Send email
+export async function sendEmail(email: string) {
+    const json = JSON.stringify({email: email});
+    const url = `${BACK_HACK}/email/resetPassword`; 
+    return await axios.post(url, json, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+}
+
+// Verify token
+export async function verifyToken(token: string) {
+    const json = JSON.stringify({token: token});
+    const url = `${BACK_HACK}/auth/verify-token`; 
+    return await axios.post(url, json, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+}
+
 export async function resetPassword(data: ResetPasswordData) {
     const json = JSON.stringify(data);
     const url = `${BACK_HACK}/auth/reset-password`; 
@@ -169,4 +191,3 @@ export async function removeMember(email: string) {
         }
     });
 }
-
