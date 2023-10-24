@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import "./ForgotPassword.css"; // Define tus estilos en este archivo
 import { Typography } from "@mui/material";
 import { sendEmail } from "../../models/User";
+import { toast } from "react-toastify";
 
 function ForgotPassword() {
 
@@ -17,6 +18,7 @@ function ForgotPassword() {
     // eslint-disable-next-line no-console
     const email = data.get("email");
     sendEmail(email as string).then((res) => {
+      toast.success("Correo enviado exitosamente");
       console.log(res);
     }).catch((err) => {
       console.log(err);
