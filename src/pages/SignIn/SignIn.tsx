@@ -105,10 +105,10 @@ function SignIn() {
               }}
             >
               <span style={{ fontStyle: "italic", fontWeight: "bold" }}>
-                Sign In for
+                Ingresa a 
               </span>{" "}
               <span style={{ color: "#3B5998", fontWeight: "bold" }}>
-                Hackfest 2.0
+                HackMX5
               </span>
             </Typography>
             <form onSubmit={handleSubmit}>
@@ -215,7 +215,7 @@ function SignIn() {
                 ¿Aún no tienes cuenta?
               </span>
               <Link
-                to="/registro"
+                to="/sign-up"
                 className="register-link"
                 style={{
                   fontWeight: "bold",

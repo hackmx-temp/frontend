@@ -105,10 +105,10 @@ function SignUp() {
               }}
             >
               <span style={{ fontStyle: "italic", fontWeight: "bold" }}>
-                Sign Up for
+                Regístrate a
               </span>{" "}
               <span style={{ color: "#3B5998", fontWeight: "bold" }}>
-                Hackfest 2.0
+                HackMX5
               </span>
             </Typography>
             <form onSubmit={handleSubmit}>
@@ -253,22 +253,6 @@ function SignUp() {
                 }}
               >
                 Obtén ayuda
-              </Link>
-            </Box>
-            <Box sx={{ fontFamily: "Poppins" }}>
-              <span style={{ marginRight: "1rem" }}>
-                ¿Aún no tienes cuenta?
-              </span>
-              <Link
-                to="/registro"
-                className="register-link"
-                style={{
-                  fontWeight: "bold",
-                  textDecorationLine: "none",
-                  color: "orange ",
-                }}
-              >
-                Regístrate
               </Link>
             </Box>
           </div>
