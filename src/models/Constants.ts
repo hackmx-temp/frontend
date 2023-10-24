@@ -1,4 +1,4 @@
-export const BACK_HACK="http://localhost:5000/hackMX";
+export const BACK_HACK="https://api.hackmx.mx/hackMX";
 
 export const PASSWORD_VALIDATORS = {
     hasUpperCase: (password: string) => /[A-Z]/.test(password),

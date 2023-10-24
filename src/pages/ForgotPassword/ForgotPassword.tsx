@@ -86,7 +86,7 @@ function ForgotPassword() {
                   fontSize: '45px',
                 }}
               >
-                Hackfest 2.0
+                HackMX5
               </Typography>
               <Typography
                 variant="body2"

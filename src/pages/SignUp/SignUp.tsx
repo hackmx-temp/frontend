@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
+import { List, ListItem, Typography } from "@mui/material";
 
 import "./SignUp.css"; // You can style this component by defining your CSS in this file
 
@@ -134,6 +134,12 @@ function SignUp() {
                 HackMX5
               </span>
             </Typography>
+            <Typography variant="h5">Parametros de contraseña</Typography>
+            <List>
+              <ListItem>Al menos 1 caracter especial</ListItem>
+              <ListItem>Al menos 1 número</ListItem>
+              <ListItem>Al menos 1 letra mayúscula</ListItem>
+            </List>
             <form onSubmit={handleSubmit}>
               <TextField
                 variant="outlined"

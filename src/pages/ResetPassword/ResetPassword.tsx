@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Link, useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
-import { Dialog, DialogContent, DialogTitle, Typography } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, List, ListItem, Typography } from "@mui/material";
 import "./ResetPassword.css";
 import { ResetPasswordData, resetPassword, verifyToken } from "../../models/User";
 import { useNavigate } from "react-router-dom";
@@ -129,6 +129,12 @@ function ResetPassword() {
             <Typography variant="body2" component="p" style={{ padding: '10px 40px 20px 60px', fontSize: '16px', marginTop: '30px', textAlign: "left" }}>
               Recupera tu contraseña ingresando una nueva y confírmala.
             </Typography>
+            <Typography variant="h5">Parametros de contraseña</Typography>
+            <List>
+              <ListItem>Al menos 1 caracter especial</ListItem>
+              <ListItem>Al menos 1 número</ListItem>
+              <ListItem>Al menos 1 letra mayúscula</ListItem>
+            </List>
             <form onSubmit={handleSubmit}>
               <TextField
                 variant="outlined"
