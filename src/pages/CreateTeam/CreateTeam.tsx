@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { Member, addMember, createTeam } from "../../models/Team";
 import { ToastContainer, toast } from "react-toastify";
+import { Data } from "../../components/TeamTable/types";
 
 
 const teamTableCols = [
@@ -39,8 +40,9 @@ const CreateTeam = () => {
     };
 
     const handleCreateTeam = () => {
-        createTeam(teamName).then((_) => {
+        createTeam(teamName).then((response) => {
             setTeamCreated(true);
+            setTeamMembers(response.data.members);
         }).catch((error) => {
             toast.error(error.response.data.message);
         })
@@ -160,7 +162,7 @@ const CreateTeam = () => {
                     </AddParticipantWrapper>
                     <TeamTable
                         columns={teamTableCols}
-                        rows={teamMembers}
+                        rows={teamMembers as Data[]}
                     />
                 </>)}
         </PageWrapper>
