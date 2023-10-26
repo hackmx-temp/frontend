@@ -103,6 +103,7 @@ const handleRequest = (email: string, status: boolean) => {
         });
     });
     setRefresh(!refresh);
+    window.location.reload();
 }
 
 useEffect(() => {
