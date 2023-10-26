@@ -97,13 +97,19 @@ const handleRequest = (email: string, status: boolean) => {
         toast.success(res.data.message, {
             autoClose: 2000,
         });
+        setTimeout(() => {
+            setRefresh(!refresh);
+            window.location.reload();
+        }, 2000);
     }).catch((err) => {
         toast.error(err.response.data.message, {
             autoClose: 3000,
         });
+        setTimeout(() => {
+            setRefresh(!refresh);
+            window.location.reload();
+        }, 3000);
     });
-    setRefresh(!refresh);
-    window.location.reload();
 }
 
 useEffect(() => {
